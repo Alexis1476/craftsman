@@ -14,7 +14,7 @@ return new class extends Migration {
     {
         Schema::create('visitors', function (Blueprint $table) {
             $table->id();
-            $table->string('anonymeID', 4);
+            $table->string('anonymousID', 4);
             $table->string('firstName', 50);
             $table->string('lastName', 50);
             $table->string('phoneNumber', 15);
