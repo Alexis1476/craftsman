@@ -26,12 +26,27 @@ class VisitorController extends Controller
     public function create()
     {
         //
+        request()->validate([
+            'firstName' => ['required'],
+            'lastName' => ['required'],
+            'phoneNumber' => ['required'],
+            'email' => ['required']
+        ]);
+        //
+        Visitor::create([
+            'firstName' => request('firstName'),
+            'lastName' => request('lastName'),
+            'phoneNumber' => request('phoneNumber'),
+            'email' => request('email')
+        ]);
+
+        return redirect('/');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreVisitorRequest  $request
+     * @param \App\Http\Requests\StoreVisitorRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreVisitorRequest $request)
@@ -42,7 +57,7 @@ class VisitorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Visitor  $visitor
+     * @param \App\Models\Visitor $visitor
      * @return \Illuminate\Http\Response
      */
     public function show(Visitor $visitor)
@@ -53,7 +68,7 @@ class VisitorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Visitor  $visitor
+     * @param \App\Models\Visitor $visitor
      * @return \Illuminate\Http\Response
      */
     public function edit(Visitor $visitor)
@@ -64,8 +79,8 @@ class VisitorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateVisitorRequest  $request
-     * @param  \App\Models\Visitor  $visitor
+     * @param \App\Http\Requests\UpdateVisitorRequest $request
+     * @param \App\Models\Visitor $visitor
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateVisitorRequest $request, Visitor $visitor)
@@ -76,7 +91,7 @@ class VisitorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Visitor  $visitor
+     * @param \App\Models\Visitor $visitor
      * @return \Illuminate\Http\Response
      */
     public function destroy(Visitor $visitor)
