@@ -34,6 +34,7 @@ class VisitorController extends Controller
         ]);
         //
         Visitor::create([
+            'anonymousID' => /*TODO : Generate unique ID*/2,
             'firstName' => request('firstName'),
             'lastName' => request('lastName'),
             'phoneNumber' => request('phoneNumber'),
