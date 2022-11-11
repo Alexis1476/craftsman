@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name', 50);
             $table->text('description');
-            $table->tinyText('why');
+            $table->text('why');
             $table->tinyInteger('points');
             $table->string('laboratory', 10);
             $table->foreignId('category_id')->constrained();
