@@ -16,4 +16,9 @@ class Visitor extends Model
         'phoneNumber',
         'email'
     ];
+
+    public function activities()
+    {
+        return $this->belongsToMany(Activity::class, 'visitor_activities')->withTimestamps();
+    }
 }
