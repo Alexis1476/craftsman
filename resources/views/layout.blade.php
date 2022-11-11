@@ -3,13 +3,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel</title>
+    <title>ETML-Craftman</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
 <header>
-    <div></div>
-    <a href="#">Accueil</a>
+    <span>ETML</span>
+    <nav>
+        <ul>
+            <li>@include('partials/nav-item', ['route' => route('home'), 'text' => 'Accueil'])</li>
+            {{--TODO : Condition if visitor is connected--}}
+            <li>@include('partials/nav-item', ['route' => route('myActivities'), 'text' => 'Mes activités'])</li>
+        </ul>
+    </nav>
 </header>
 <main>
     @yield('content')
