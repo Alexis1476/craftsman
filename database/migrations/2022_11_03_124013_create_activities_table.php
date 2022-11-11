@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->tinyText('why');
             $table->tinyInteger('points');
             $table->string('laboratory', 10);
+            $table->foreignId('category_id')->constrained();
             $table->timestamps();
         });
     }
