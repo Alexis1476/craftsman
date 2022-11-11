@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use Hashids\Hashids;
 use App\Models\Visitor;
 use http\Env\Request;
@@ -76,6 +77,9 @@ class VisitorController extends Controller
     public function show(Visitor $visitor)
     {
         //
+        /*$visitor = Visitor::find(1);
+        $activity = Activity::find(1);
+        $visitor->activities()->attach($activity, ['finished' => 0]);*/
     }
 
     /**
