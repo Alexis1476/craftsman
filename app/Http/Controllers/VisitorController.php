@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Hashids\Hashids;
 use App\Models\Visitor;
 use App\Http\Requests\StoreVisitorRequest;
 use App\Http\Requests\UpdateVisitorRequest;
+use http\Env\Request;
 
 class VisitorController extends Controller
 {
@@ -25,16 +27,21 @@ class VisitorController extends Controller
      */
     public function create()
     {
-        //
+        // Génération de l'ID unique
+        $hashids = new Hashids(\request('email'));
+        dump($hashids->encode(1, 2));
+        die;
+        // Validation du formulaire
         request()->validate([
             'firstName' => ['required'],
             'lastName' => ['required'],
             'phoneNumber' => ['required'],
             'email' => ['required']
         ]);
-        //
+
+        // Insertion dans la base de données
         Visitor::create([
-            'anonymousID' => /*TODO : Generate unique ID*/2,
+            'anonymousID' => /*TODO : Generate unique ID*/ 2,
             'firstName' => request('firstName'),
             'lastName' => request('lastName'),
             'phoneNumber' => request('phoneNumber'),
