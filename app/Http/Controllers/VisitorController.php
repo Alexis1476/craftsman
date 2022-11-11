@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Hashids\Hashids;
 use App\Models\Visitor;
-use App\Http\Requests\StoreVisitorRequest;
-use App\Http\Requests\UpdateVisitorRequest;
 use http\Env\Request;
 
 class VisitorController extends Controller
@@ -23,14 +21,10 @@ class VisitorController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function create()
     {
-        // Génération de l'ID unique
-        $hashids = new Hashids(\request('email'));
-        dump($hashids->encode(1, 2));
-        die;
         // Validation du formulaire
         request()->validate([
             'firstName' => ['required'],
@@ -39,16 +33,27 @@ class VisitorController extends Controller
             'email' => ['required']
         ]);
 
+        // Si le visiteur s'est déjà enregistré
+        if (Visitor::where('email', \request('email'))->first()) {
+            return back()->withInput()->withErrors([
+                'email' => 'Un compte existe déjà avec cette adresse email'
+            ]);
+        }
+
+        // Génération de l'ID unique
+        $hashids = new Hashids(\request('email'));
+        $id = $hashids->encode(1, 2);
+
         // Insertion dans la base de données
         Visitor::create([
-            'anonymousID' => /*TODO : Generate unique ID*/ 2,
+            'anonymousID' => $id,
             'firstName' => request('firstName'),
             'lastName' => request('lastName'),
             'phoneNumber' => request('phoneNumber'),
             'email' => request('email')
         ]);
 
-        return redirect('/');
+        redirect(route('home'));
     }
 
     /**
