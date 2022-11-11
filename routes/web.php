@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VisitorController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +17,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->name('home');
 
 Route::post('/login', [UserController::class, 'login'])->name('login');
 Route::post('/signUp', [VisitorController::class, 'create'])->name('signUp');
+Route::get('/myActivities', [VisitorController::class, 'show'])->name('myActivities');
+
+/*Generer les migrations lors du deploiement*/
+Route::get('/migrate', function () {
+    $exitCode = Artisan::call('migrate:fresh --seed --force');
+});
