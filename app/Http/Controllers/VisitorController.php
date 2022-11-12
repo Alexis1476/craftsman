@@ -74,14 +74,15 @@ class VisitorController extends Controller
         define('NB_ACTIVITIES', 5);
 
         // Visiteur qui fini l'activité
-        $visitor = Visitor::where('anonymousID', 'x5UA')->firstOrFail();
+        $visitor = Visitor::where('anonymousID', 'rnUW')->firstOrFail();
         $visitorActivities = $visitor->activities->pluck('id'); // Pluck: Get seule les ids
 
         // Activités que le visiteur n'a pas encore fait
-        $activities = Activity::whereNotIn('id', $visitorActivities)->select()->get()->pluck('id');
+        $activities = Activity::whereNotIn('id', $visitorActivities)->select()->get()->pluck('id')->toArray();
 
         // Si le visiteur a déjà fait toutes les activités
-        /*TODO*/
+        if (!$activities)
+            return redirect(route('myActivities'));
 
         // Nombre d'activités maximales
         $nbMaxNewActivities = NB_ACTIVITIES;
@@ -89,17 +90,15 @@ class VisitorController extends Controller
             $nbMaxNewActivities = count($activities);
 
         // Selection de 5 activités random
-        $newActivities = [];
-        for ($i = 0; $i < NB_ACTIVITIES; $i++) {
-            $newActivities = array_rand($activities->toArray(), $nbMaxNewActivities);
-        }
+        $keyActivities = [];
+        $keyActivities = array_rand($activities, $nbMaxNewActivities);
 
         // Enregistrement dans la base de données
-        foreach ($newActivities as $id) {
-            $visitor->activities()->attach($id);
+        foreach ($keyActivities as $key) {
+            $visitor->activities()->attach($activities[$key]);
         }
 
-        redirect(route('myActivities'));
+        return redirect(route('myActivities'));
     }
 
     /**
