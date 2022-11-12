@@ -90,7 +90,6 @@ class VisitorController extends Controller
             $nbMaxNewActivities = count($activities);
 
         // Selection de 5 activités random
-        $keyActivities = [];
         $keyActivities = array_rand($activities, $nbMaxNewActivities);
 
         // Enregistrement dans la base de données
