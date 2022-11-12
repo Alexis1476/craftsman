@@ -14,7 +14,7 @@ class UserController extends Controller
             'password' => ['required']
         ]);
 
-        $result = auth()->attempt([
+        $result = auth()->guard('webadmin')->attempt([
             'login' => \request('login'),
             'password' => \request('password') // password -> convention laravel
         ]);
