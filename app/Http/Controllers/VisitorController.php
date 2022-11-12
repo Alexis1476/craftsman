@@ -6,6 +6,7 @@ use App\Models\Activity;
 use Hashids\Hashids;
 use App\Models\Visitor;
 use http\Env\Request;
+use Illuminate\Support\Facades\Hash;
 
 class VisitorController extends Controller
 {
@@ -17,6 +18,15 @@ class VisitorController extends Controller
     public function index()
     {
         //
+    }
+
+    public function login()
+    {
+        /*TODO : Finir authentification visitor*/
+        $result = auth()->attempt([
+            'email' => \request('email'),
+            'password' => \request('password') // password -> convention laravel
+        ]);
     }
 
     /**
@@ -31,7 +41,8 @@ class VisitorController extends Controller
             'firstName' => ['required'],
             'lastName' => ['required'],
             'phoneNumber' => ['required'],
-            'email' => ['required']
+            'email' => ['required'],
+            'password' => ['required']
         ]);
 
         // Si le visiteur s'est déjà enregistré
@@ -51,10 +62,17 @@ class VisitorController extends Controller
             'firstName' => request('firstName'),
             'lastName' => request('lastName'),
             'phoneNumber' => request('phoneNumber'),
-            'email' => request('email')
+            'email' => request('email'),
+            'password' => Hash::make(request('password')),
         ]);
 
         redirect(route('home'));
+    }
+
+    public function test()
+    {
+
+
     }
 
     /**
