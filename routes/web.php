@@ -20,11 +20,15 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::post('/login', [UserController::class, 'login'])->name('login');
-Route::post('/signUp', [VisitorController::class, 'create'])->name('signUp');
-Route::get('/myActivities', [VisitorController::class, 'show'])->name('myActivities');
+/* Routes du visiteur*/
+Route::post('login', [VisitorController::class, 'login'])->name('login');
+Route::post('signUp', [VisitorController::class, 'create'])->name('signUp');
+Route::get('myActivities', [VisitorController::class, 'show'])->name('myActivities');
+
+/*Routes des admins*/
+Route::post('admin/login', [UserController::class, 'login'])->name('admin.login');
 
 /*Generer les migrations lors du deploiement*/
-Route::get('/migrate', function () {
+Route::get('migrate', function () {
     $exitCode = Artisan::call('migrate:fresh --seed --force');
 });
