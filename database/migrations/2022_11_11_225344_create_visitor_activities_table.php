@@ -15,7 +15,7 @@ return new class extends Migration {
         Schema::create('visitor_activities', function (Blueprint $table) {
             $table->foreignId('visitor_id')->constrained();
             $table->foreignId('activity_id')->constrained();
-            $table->boolean('finished');
+            $table->boolean('finished')->default(0);
             $table->timestamps();
             $table->unique(['visitor_id', 'activity_id']);
         });
