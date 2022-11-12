@@ -69,7 +69,7 @@ class VisitorController extends Controller
         redirect(route('home'));
     }
 
-    public function test()
+    public function newActivities()
     {
         define('NB_ACTIVITIES', 5);
 
@@ -80,6 +80,9 @@ class VisitorController extends Controller
         // Activités que le visiteur n'a pas encore fait
         $activities = Activity::whereNotIn('id', $visitorActivities)->select()->get()->pluck('id');
 
+        // Si le visiteur a déjà fait toutes les activités
+        /*TODO*/
+
         // Nombre d'activités maximales
         $nbMaxNewActivities = NB_ACTIVITIES;
         if (count($activities) < NB_ACTIVITIES)
@@ -87,13 +90,16 @@ class VisitorController extends Controller
 
         // Selection de 5 activités random
         $newActivities = [];
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < NB_ACTIVITIES; $i++) {
             $newActivities = array_rand($activities->toArray(), $nbMaxNewActivities);
         }
 
+        // Enregistrement dans la base de données
+        foreach ($newActivities as $id) {
+            $visitor->activities()->attach($id);
+        }
 
-        //
-
+        redirect(route('myActivities'));
     }
 
     /**
