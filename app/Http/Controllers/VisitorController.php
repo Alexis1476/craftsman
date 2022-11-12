@@ -71,7 +71,28 @@ class VisitorController extends Controller
 
     public function test()
     {
+        define('NB_ACTIVITIES', 5);
 
+        // Visiteur qui fini l'activité
+        $visitor = Visitor::where('anonymousID', 'x5UA')->firstOrFail();
+        $visitorActivities = $visitor->activities->pluck('id'); // Pluck: Get seule les ids
+
+        // Activités que le visiteur n'a pas encore fait
+        $activities = Activity::whereNotIn('id', $visitorActivities)->select()->get()->pluck('id');
+
+        // Nombre d'activités maximales
+        $nbMaxNewActivities = NB_ACTIVITIES;
+        if (count($activities) < NB_ACTIVITIES)
+            $nbMaxNewActivities = count($activities);
+
+        // Selection de 5 activités random
+        $newActivities = [];
+        for ($i = 0; $i < 5; $i++) {
+            $newActivities = array_rand($activities->toArray(), $nbMaxNewActivities);
+        }
+
+
+        //
 
     }
 
