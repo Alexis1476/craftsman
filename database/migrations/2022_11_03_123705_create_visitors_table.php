@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->string('lastName', 50);
             $table->string('phoneNumber', 15);
             $table->string('email')->unique()->index();
+            $table->string('password');
             $table->timestamps();
         });
     }
