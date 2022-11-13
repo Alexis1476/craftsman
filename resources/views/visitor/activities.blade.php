@@ -1,4 +1,4 @@
-@extends('visitor.resources.views.layout')
+@extends('layout')
 
 @section('title', 'Activités')
 
