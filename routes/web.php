@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VisitorController;
 use Illuminate\Support\Facades\Artisan;
@@ -22,10 +23,13 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+Route::get('activities', [ActivityController::class, 'show'])->name('activities');
+
 /* Routes du visiteur*/
 Route::post('login', [VisitorController::class, 'login'])->name('login');
 Route::post('signUp', [VisitorController::class, 'create'])->name('signUp');
-Route::get('myActivities', [VisitorController::class, 'show'])->name('myActivities');
+
+Route::get('activities/{id}', [VisitorController::class, 'show'])->name('visitor.activities');
 
 /*Routes des admins*/
 Route::post('admin/login', [UserController::class, 'login'])->name('admin.login');
