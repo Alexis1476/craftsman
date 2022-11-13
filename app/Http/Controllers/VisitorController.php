@@ -7,6 +7,7 @@ use Hashids\Hashids;
 use App\Models\Visitor;
 use http\Env\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\View\View;
 
 class VisitorController extends Controller
 {
@@ -115,14 +116,13 @@ class VisitorController extends Controller
      * Display the specified resource.
      *
      * @param \App\Models\Visitor $visitor
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show(Visitor $visitor)
     {
-        //
-        /*$visitor = Visitor::find(1);
-        $activity = Activity::find(1);
-        $visitor->activities()->attach($activity, ['finished' => 0]);*/
+        $activities = Visitor::where('anonymousID', \request('id'))->firstOrFail()->activities;
+
+        return View('visitor.activities', ['activities' => $activities]);
     }
 
     /**
