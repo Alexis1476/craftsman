@@ -4,24 +4,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ETML-Craftman</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 </head>
 <body>
 <header>
-    <span>ETML</span>
+    <span id="logo">ETML</span>
     <nav>
         <ul>
-            <li>@include('partials/nav-item', ['route' => route('home'), 'text' => 'Accueil'])</li>
+            @include('components/nav-item', ['route' => route('home'), 'text' => 'Accueil'])
             {{--TODO : Condition if visitor is connected--}}
-            <li>@include('partials/nav-item', ['route' => route('myActivities'), 'text' => 'Mes activités'])</li>
+            @include('components/nav-item', ['route' => route('myActivities'), 'text' => 'Mes activités'])
         </ul>
     </nav>
+    {{--TODO: Gerer auth--}}
+    <a class="nav-item" href="">Log in</a>
 </header>
 <main>
     @yield('content')
 </main>
 <footer>
-
+    ETML
 </footer>
 </body>
 </html>
