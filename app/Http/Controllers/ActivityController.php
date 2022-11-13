@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Activity;
 use App\Http\Requests\StoreActivityRequest;
 use App\Http\Requests\UpdateActivityRequest;
+use Illuminate\View\View;
 
 class ActivityController extends Controller
 {
@@ -31,7 +32,7 @@ class ActivityController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreActivityRequest  $request
+     * @param \App\Http\Requests\StoreActivityRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreActivityRequest $request)
@@ -42,18 +43,19 @@ class ActivityController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Activity  $activity
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Activity $activity
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show(Activity $activity)
     {
         //
+        return View('activities');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Activity  $activity
+     * @param \App\Models\Activity $activity
      * @return \Illuminate\Http\Response
      */
     public function edit(Activity $activity)
@@ -64,8 +66,8 @@ class ActivityController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateActivityRequest  $request
-     * @param  \App\Models\Activity  $activity
+     * @param \App\Http\Requests\UpdateActivityRequest $request
+     * @param \App\Models\Activity $activity
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateActivityRequest $request, Activity $activity)
@@ -76,7 +78,7 @@ class ActivityController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Activity  $activity
+     * @param \App\Models\Activity $activity
      * @return \Illuminate\Http\Response
      */
     public function destroy(Activity $activity)
