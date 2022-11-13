@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', 'ETML - Craftman')
+
 @section('content')
     <h1>ETML Portes Ouvertes</h1>
     {{--Form user login--}}

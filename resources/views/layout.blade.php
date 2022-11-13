@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ETML-Craftman</title>
+    <title>@yield('title')</title>
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
 </head>
 <body>
@@ -13,7 +13,7 @@
         <ul>
             @include('components/nav-item', ['route' => route('home'), 'text' => 'Accueil'])
             {{--TODO : Condition if visitor is connected--}}
-            @include('components/nav-item', ['route' => route('myActivities'), 'text' => 'Mes activités'])
+            @include('components/nav-item', ['route' => route('activities'), 'text' => 'Activités'])
         </ul>
     </nav>
     {{--TODO: Gerer auth--}}
