@@ -8,7 +8,9 @@
 </head>
 <body>
 <header>
-    <a id="logo" href="{{route('home')}}">ETML</a>
+    <a id="logo" href="{{route('home')}}">
+        <img height="20px" src="{{asset('images/logo.png')}}" alt="Logo ETML">
+    </a>
     <nav>
         <ul>
             @include('components/nav-item', ['route' => route('home'), 'text' => 'Accueil'])
