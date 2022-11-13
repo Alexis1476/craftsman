@@ -67,7 +67,9 @@ class VisitorController extends Controller
             'password' => Hash::make(request('password')),
         ]);
 
-        redirect(route('home'));
+        // Ajout des activités
+        /*TODO*/
+        return redirect(route('home'));
     }
 
     public function newActivities()
