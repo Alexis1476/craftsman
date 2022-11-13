@@ -2,8 +2,14 @@
 
 @section('title', 'ETML - Craftman')
 
+@section('custom-header')
+    <div class="bg">
+        <h1>ETML Portes Ouvertes</h1>
+        <p>Faites des activités et gagnez des points!</p>
+    </div>
+@endsection
+
 @section('content')
-    <h1>ETML Portes Ouvertes</h1>
     {{--Form user login--}}
     <form action="{{route('login')}}" method="post">
         {{csrf_field()}}
