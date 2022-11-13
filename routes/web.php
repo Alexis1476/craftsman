@@ -23,7 +23,7 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('activities', [ActivityController::class, 'show'])->name('activities');
+Route::get('activities', [ActivityController::class, 'index'])->name('activities');
 
 /* Routes du visiteur*/
 Route::post('login', [VisitorController::class, 'login'])->name('login');
