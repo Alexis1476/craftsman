@@ -12,11 +12,11 @@ class ActivityController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+        return View('activities', ['activities' => Activity::all()]);
     }
 
     /**
@@ -49,7 +49,6 @@ class ActivityController extends Controller
     public function show(Activity $activity)
     {
         //
-        return View('activities');
     }
 
     /**
