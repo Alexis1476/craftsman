@@ -19,6 +19,7 @@
     {{--TODO: Gerer auth--}}
     <a class="nav-item" href="">Log in</a>
 </header>
+@yield('custom-header')
 <main>
     @yield('content')
 </main>
