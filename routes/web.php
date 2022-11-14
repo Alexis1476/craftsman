@@ -17,8 +17,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('newActivities', [VisitorController::class, 'newActivities'])->name('test');
-
 Route::get('/', function () {
     return view('home');
 })->name('home');
