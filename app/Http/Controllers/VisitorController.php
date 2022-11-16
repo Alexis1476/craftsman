@@ -80,7 +80,7 @@ class VisitorController extends Controller
         $visitor->newActivities();
 
         // Connexion du visiteur
-        $result = auth()->guard(self::GUARD)->attempt([
+        auth()->guard(self::GUARD)->attempt([
             'email' => \request('email'),
             'password' => \request('password') // password -> convention laravel
         ]);
