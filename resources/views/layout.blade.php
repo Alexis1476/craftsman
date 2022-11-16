@@ -19,7 +19,15 @@
         </ul>
     </nav>
     {{--TODO: Gerer auth--}}
-    <a class="nav-item" href="">Log in</a>
+    @auth('webadmin')
+        {{auth('webadmin')->user()->login}}
+        <a class="nav-item" href="{{route('admin.logout')}}">Se deconnecter</a>
+    @elseauth('web')
+        {{auth()->user()->anonymousID}}
+        <a class="nav-item" href="{{route('logout')}}">Se deconnecter</a>
+    @else
+        <a class="nav-item" href="{{route('login')}}">Se connecter</a>
+    @endauth
 </header>
 @yield('custom-header')
 <main>
