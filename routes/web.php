@@ -29,7 +29,7 @@ Route::get('login', function () {
 /* Routes du visiteur*/
 Route::post('login', [VisitorController::class, 'login'])->name('login');
 Route::post('signUp', [VisitorController::class, 'create'])->name('signUp');
-Route::post('logout', [VisitorController::class, 'logout'])->name('logout');
+Route::get('logout', [VisitorController::class, 'logout'])->name('logout');
 
 Route::get('activities/{id}', [VisitorController::class, 'show'])->name('visitor.activities');
 
