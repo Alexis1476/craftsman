@@ -6,6 +6,14 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    const GUARD = 'webadmin';
+
+    function logout()
+    {
+        auth(self::GUARD)->logout();
+        return View('home');
+    }
+
     //
     function login()
     {

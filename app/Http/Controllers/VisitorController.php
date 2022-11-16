@@ -21,6 +21,12 @@ class VisitorController extends Controller
         //
     }
 
+    public function logout()
+    {
+        auth()->logout();
+        return View('home');
+    }
+
     public function login()
     {
         /*TODO : Finir authentification visitor*/
