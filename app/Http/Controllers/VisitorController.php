@@ -37,6 +37,7 @@ class VisitorController extends Controller
             'email' => \request('email'),
             'password' => \request('password') // password -> convention laravel
         ]);
+
     }
 
     /**
@@ -105,9 +106,9 @@ class VisitorController extends Controller
      * @param \App\Models\Visitor $visitor
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show(Visitor $visitor)
+    public function show()
     {
-        $activities = Visitor::where('anonymousID', \request('id'))->firstOrFail()->activities;
+        $activities = Visitor::where('anonymousID', \request('id'))->firstOrFail()->activities()->where('finished', 0)->get();
 
         return View('visitor.activities', ['activities' => $activities]);
     }
