@@ -6,11 +6,14 @@ use App\Models\Activity;
 use Hashids\Hashids;
 use App\Models\Visitor;
 use http\Env\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class VisitorController extends Controller
 {
+    const GUARD = 'web';
+
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +33,7 @@ class VisitorController extends Controller
     public function login()
     {
         /*TODO : Finir authentification visitor*/
-        $result = auth()->attempt([
+        $result = auth()->guard(self::GUARD)->attempt([
             'email' => \request('email'),
             'password' => \request('password') // password -> convention laravel
         ]);
@@ -76,7 +79,13 @@ class VisitorController extends Controller
         // Ajout des activités
         $visitor->newActivities();
 
-        return redirect(route('visitor.activities', ['id' => $visitor->anonymousID]));
+        // Connexion du visiteur
+        $result = auth()->guard(self::GUARD)->attempt([
+            'email' => \request('email'),
+            'password' => \request('password') // password -> convention laravel
+        ]);
+
+        return redirect(route('visitor.activities', ['id' => auth(self::GUARD)->user()->anonymousID]));
     }
 
     /**
