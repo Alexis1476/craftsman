@@ -22,14 +22,14 @@ class UserController extends Controller
             'password' => ['required']
         ]);
 
-        $result = auth()->guard('webadmin')->attempt([
+        $result = auth()->guard(self::GUARD)->attempt([
             'login' => \request('login'),
             'password' => \request('password') // password -> convention laravel
         ]);
 
         // redirection
         if ($result) {
-            return redirect('/');
+            return redirect(route('home'));
         }
 
         // Retourne page précedente avec les données écris dans le formulaire + erreurs
