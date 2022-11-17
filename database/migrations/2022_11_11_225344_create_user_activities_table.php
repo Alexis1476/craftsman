@@ -12,12 +12,12 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('visitor_activities', function (Blueprint $table) {
-            $table->foreignId('visitor_id')->constrained();
+        Schema::create('user_activities', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained();
             $table->foreignId('activity_id')->constrained();
             $table->boolean('finished')->default(0);
             $table->timestamps();
-            $table->unique(['visitor_id', 'activity_id']);
+            $table->unique(['user_id', 'activity_id']);
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('visitor_activities');
+        Schema::dropIfExists('user_activities');
     }
 };

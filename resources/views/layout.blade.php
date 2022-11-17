@@ -24,7 +24,7 @@
         <a class="nav-item" href="{{route('admin.logout')}}">Se deconnecter</a>
     @elseauth('web')
         {{auth()->user()->anonymousID}}
-        <a class="nav-item" href="{{route('logout')}}">Se deconnecter</a>
+        <a class="nav-item" href="{{route('user.logout')}}">Se deconnecter</a>
     @else
         <a class="nav-item" href="{{route('login')}}">Se connecter</a>
     @endauth

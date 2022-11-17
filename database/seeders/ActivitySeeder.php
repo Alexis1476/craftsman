@@ -113,8 +113,8 @@ class ActivitySeeder extends Seeder
             'laboratory' => 'INF',
             'category_id' => $projinno->id
         ], [
-            'name' => 'Agilite - User Story',
-            'description' => 'Avec l\'aide d\'un élève, apprenez à écrire une User Story.',
+            'name' => 'Agilite - Admin Story',
+            'description' => 'Avec l\'aide d\'un élève, apprenez à écrire une Admin Story.',
             'why' => 'L\'importance de comprendre et bien définir les besoins du client.',
             'points' => 5,
             'laboratory' => 'INF',

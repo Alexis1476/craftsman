@@ -4,7 +4,7 @@
 
 @section('content')
     {{--Form user login--}}
-    <form action="{{route('login')}}" method="post">
+    <form action="{{route('user.login')}}" method="post">
         {{csrf_field()}}
         <label for="email">Email</label>
         <input name="email" id="email" type="email">
@@ -17,7 +17,7 @@
     </form><br><br>
     {{--Form to sign up--}}
     <h2>S'enregistrer</h2>
-    <form action="{{route('signUp')}}" method="post">
+    <form action="{{route('user.signUp')}}" method="post">
         {{csrf_field()}}
         <label for="firstName">Prenom</label>
         <input name="firstName" id="firstName" type="text">

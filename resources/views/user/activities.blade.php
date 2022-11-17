@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Activités')
+@section('title', 'Mes activités')
 
 @section('content')
     @foreach($activities as $activity)

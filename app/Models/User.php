@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Visitor extends Authenticatable
+class User extends Authenticatable
 {
     use HasApiTokens, HasFactory;
 
@@ -66,6 +66,6 @@ class Visitor extends Authenticatable
 
     public function activities()
     {
-        return $this->belongsToMany(Activity::class, 'visitor_activities')->withTimestamps();
+        return $this->belongsToMany(Activity::class, 'user_activities')->withTimestamps();
     }
 }

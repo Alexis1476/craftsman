@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
-class VisitorController extends Controller
+class UserController extends Controller
 {
     const GUARD = 'web';
 
@@ -32,7 +32,7 @@ class VisitorController extends Controller
 
     public function login()
     {
-        /*TODO : Finir authentification visitor*/
+        /*TODO : Finir authentification user*/
         $result = auth()->guard(self::GUARD)->attempt([
             'email' => \request('email'),
             'password' => \request('password') // password -> convention laravel
@@ -68,7 +68,7 @@ class VisitorController extends Controller
         $id = $hashids->encode(1, 2);
 
         // Insertion dans la base de données
-        $visitor = User::create([
+        $user = User::create([
             'anonymousID' => $id,
             'firstName' => request('firstName'),
             'lastName' => request('lastName'),
@@ -78,7 +78,7 @@ class VisitorController extends Controller
         ]);
 
         // Ajout des activités
-        $visitor->newActivities();
+        $user->newActivities();
 
         // Connexion du visiteur
         auth()->guard(self::GUARD)->attempt([
@@ -86,16 +86,16 @@ class VisitorController extends Controller
             'password' => \request('password') // password -> convention laravel
         ]);
 
-        return redirect(route('visitor.activities', ['id' => auth(self::GUARD)->user()->anonymousID]));
+        return redirect(route('user.activities'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\StoreVisitorRequest $request
+     * @param \App\Http\Requests\StoreUserRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreVisitorRequest $request)
+    public function store(StoreUserRequest $request)
     {
         //
     }
@@ -103,23 +103,23 @@ class VisitorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\User $visitor
+     * @param \App\Models\User $user
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show()
     {
-        $activities = User::where('anonymousID', \request('id'))->firstOrFail()->activities()->where('finished', 0)->get();
+        $activities = \auth()->user()->activities;
 
-        return View('visitor.activities', ['activities' => $activities]);
+        return View('user.activities', ['activities' => $activities]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\User $visitor
+     * @param \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $visitor)
+    public function edit(User $user)
     {
         //
     }
@@ -127,11 +127,11 @@ class VisitorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \App\Http\Requests\UpdateVisitorRequest $request
-     * @param \App\Models\User $visitor
+     * @param \App\Http\Requests\UpdateUserRequest $request
+     * @param \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateVisitorRequest $request, User $visitor)
+    public function update(UpdateVisitorRequest $request, User $user)
     {
         //
     }
@@ -139,10 +139,10 @@ class VisitorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\User $visitor
+     * @param \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $visitor)
+    public function destroy(User $user)
     {
         //
     }
