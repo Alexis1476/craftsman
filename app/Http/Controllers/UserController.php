@@ -27,7 +27,7 @@ class UserController extends Controller
     public function logout()
     {
         auth()->logout();
-        return View('home');
+        return redirect(route('home'));
     }
 
     public function login()

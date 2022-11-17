@@ -11,7 +11,7 @@ class AdminController extends Controller
     function logout()
     {
         auth(self::GUARD)->logout();
-        return View('home');
+        return redirect(route('home'));
     }
 
     //
