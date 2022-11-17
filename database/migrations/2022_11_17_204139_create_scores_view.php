@@ -30,7 +30,7 @@ return new class extends Migration {
     private function dropView(): string
     {
         $viewName = self::VIEW_NAME;
-        return "SQL DROP VIEW IF EXISTS $viewName; SQL;";
+        return "DROP VIEW IF EXISTS $viewName;";
     }
 
     /**

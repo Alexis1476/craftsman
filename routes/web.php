@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,7 @@ Route::post('admin/login', [AdminController::class, 'login'])->name('admin.login
 Route::get('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 Route::get('admin/modify', [AdminController::class, ''])->name('admin.modify');
 Route::get('users/{id}', [AdminController::class, ''])->name('admin.finduser');
+Route::get('scores', [ScoreController::class, 'show'])->name('scores');
 
 /* Generer les migrations lors du deploiement*/
 Route::get('migrate', function () {
