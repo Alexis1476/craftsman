@@ -9,7 +9,7 @@
 <body>
 <header>
     <a id="logo" href="{{route('home')}}">
-        <img height="20px" src="{{asset('images/logo.png')}}" alt="Logo ETML">
+        <img height="20px" src="{{asset('img/logo.png')}}" alt="Logo ETML">
     </a>
     <nav>
         <ul>
