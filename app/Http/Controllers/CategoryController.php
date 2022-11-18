@@ -20,7 +20,7 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        return View('categories', ['categories' => Activity::all()]);
+        return View('categories', ['categories' => Category::all()]);
     }
 
     /**
