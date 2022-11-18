@@ -108,7 +108,7 @@ class UserController extends Controller
      */
     public function show()
     {
-        $activities = \auth()->user()->activities;
+        $activities = \auth()->user()->activities()->where('finished', 0)->get();
 
         return View('user.activities', ['activities' => $activities, 'user' => auth()->guard(self::GUARD)->user()]);
     }
