@@ -19,27 +19,27 @@ class CategorySeeder extends Seeder
         Category::factory()->createMany([[
             'name' => 'Challenge',
             'description' => 'Stimule la communication, le partage, la bienveillance, valeurs qu\'on veut transmettre dans la section',
-            'image' => ''
+            'image' => 'challenge.png'
         ], [
             'name' => 'Culture',
             'description' => 'Stimule la communication, le partage, la bienveillance, valeurs qu\'on veut transmettre dans la section',
-            'image' => ''
+            'image' => 'culture.png'
         ], [
             'name' => 'Proj-inno',
             'description' => '',
-            'image' => ''
+            'image' => 'proj-inno.png'
         ], [
             'name' => 'Web-db',
             'description' => '',
-            'image' => ''
+            'image' => 'web-db.png'
         ], [
             'name' => 'Prog-devops',
             'description' => '',
-            'image' => ''
+            'image' => 'prog-devops.png'
         ], [
             'name' => 'Res-sys',
             'description' => '',
-            'image' => ''
+            'image' => 'res-sys.png'
         ]]);
     }
 }
