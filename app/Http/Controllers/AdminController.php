@@ -15,10 +15,16 @@ class AdminController extends Controller
         auth(self::GUARD)->logout();
         return redirect(route('home'));
     }
+
     public function validateActivity()
-    {
-        dump('s');
+    {//rnUW
+        $user = User::where('anonymousID', \request('user'))->first();
+
+        $user->activities()->sync([request('activity') => ['finished' => 1]], false);
+
+        return back();
     }
+
     function showUser()
     {
         $user = User::where('anonymousID', \request('id'))->firstOrFail(); //mWUa
