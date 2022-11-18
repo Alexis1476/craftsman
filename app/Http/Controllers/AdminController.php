@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class AdminController extends Controller
 {
@@ -12,6 +14,16 @@ class AdminController extends Controller
     {
         auth(self::GUARD)->logout();
         return redirect(route('home'));
+    }
+    public function validateActivity()
+    {
+        dump('s');
+    }
+    function showUser()
+    {
+        $user = User::where('anonymousID', \request('id'))->firstOrFail(); //mWUa
+        $userActivities = $user->activities;
+        return View('user.activities', ['user' => $user, 'activities' => $userActivities]);
     }
 
     //
