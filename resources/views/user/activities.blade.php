@@ -14,7 +14,7 @@
         <span><strong>Points : </strong>{{$activity->points}}</span>
         <p>Laboratoire : {{$activity->laboratory}}</p>
         @auth('webadmin')
-            <a href="{{route('admin.validate',['user' => $user->anonymousID, 'activity' => $activity->id])}}">Valider</a>
+            <a href="{{route('admin.validateActivity',['user' => $user->anonymousID, 'activity' => $activity->id])}}">Valider</a>
         @endauth
     @endforeach
 @endsection
