@@ -110,7 +110,7 @@ class UserController extends Controller
     {
         $activities = \auth()->user()->activities;
 
-        return View('user.activities', ['activities' => $activities]);
+        return View('user.activities', ['activities' => $activities, 'user' => auth()->guard(self::GUARD)->user()]);
     }
 
     /**
