@@ -18,11 +18,11 @@ class CategorySeeder extends Seeder
         // Challenge
         Category::factory()->createMany([[
             'name' => 'Challenge',
-            'description' => 'Stimule la communication, le partage, la bienveillance, valeurs qu\'on veut transmettre dans la section',
+            'description' => 'Stimule la communication, le partage, la bienveillance, valeurs qu\'on veut transmettre dans la section.',
             'image' => 'challenge.png'
         ], [
             'name' => 'Culture',
-            'description' => 'Stimule la communication, le partage, la bienveillance, valeurs qu\'on veut transmettre dans la section',
+            'description' => 'Stimule la communication, le partage, la bienveillance, valeurs qu\'on veut transmettre dans la section.',
             'image' => 'culture.png'
         ], [
             'name' => 'Proj-inno',
