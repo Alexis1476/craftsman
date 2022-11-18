@@ -17,10 +17,10 @@ class AdminController extends Controller
     }
 
     public function validateActivity()
-    {//rnUW
+    {
         $user = User::where('anonymousID', \request('user'))->first();
-
         $user->activities()->sync([request('activity') => ['finished' => 1]], false);
+        $user->newActivities();
 
         return back();
     }
@@ -28,7 +28,7 @@ class AdminController extends Controller
     function showUser()
     {
         $user = User::where('anonymousID', \request('id'))->firstOrFail(); //mWUa
-        $userActivities = $user->activities;
+        $userActivities = $user->activities()->where('finished', 0)->get();
         return View('user.activities', ['user' => $user, 'activities' => $userActivities]);
     }
 
