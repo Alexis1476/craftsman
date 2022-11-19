@@ -33,18 +33,26 @@ Route::get('login', function () {
 })->name('login');
 
 /* Routes du visiteur*/
-Route::post('user/login', [UserController::class, 'login'])->name('user.login');
-Route::post('user/signUp', [UserController::class, 'create'])->name('user.signUp');
-Route::get('user/logout', [UserController::class, 'logout'])->name('user.logout');
-Route::get('user/activities', [UserController::class, 'show'])->name('user.activities');
+Route::controller(UserController::class)->group(function () {
+    Route::post('user/login', 'login')->name('user.login');
+    Route::post('user/signUp', 'create')->name('user.signUp');
+    Route::middleware(['App\Http\Middleware\AuthUser'])->group(function () {
+        Route::get('user/logout', 'logout')->name('user.logout');
+        Route::get('user/activities', 'show')->name('user.activities');
+    });
+});
 
 /* Routes des admins*/
-Route::post('admin/login', [AdminController::class, 'login'])->name('admin.login');
-Route::get('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
-//Route::get('admin/modify', [AdminController::class, ''])->name('admin.modify');
-Route::get('user/{id}', [AdminController::class, 'showUser'])->name('admin.showUser');
-Route::get('validateActivity/{user}/{activity}', [AdminController::class, 'validateActivity'])->name('admin.validateActivity');
-Route::get('scores', [ScoreController::class, 'show'])->name('scores');
+Route::controller(AdminController::class)->group(function () {
+    Route::post('admin/login', 'login')->name('admin.login');
+    Route::middleware(['App\Http\Middleware\AuthAdmin'])->group(function () {
+        Route::get('admin/logout', 'logout')->name('admin.logout');
+        Route::get('user/{id}', 'showUser')->name('admin.showUser');
+        Route::get('validateActivity/{user}/{activity}', 'validateActivity')->name('admin.validateActivity');
+        //Route::get('admin/modify', '')->name('admin.modify');
+        Route::get('scores', [ScoreController::class, 'show'])->name('scores');
+    });
+});
 
 /* Generer les migrations lors du deploiement*/
 Route::get('migrate', function () {
