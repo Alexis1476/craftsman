@@ -20,7 +20,7 @@ class AdminFactory extends Factory
         return [
             'login' => fake()->userName(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'admin' => '0',
+            'right' => '0',
             'remember_token' => Str::random(10),
         ];
     }

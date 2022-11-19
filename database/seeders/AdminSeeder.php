@@ -20,12 +20,12 @@ class AdminSeeder extends Seeder
             // Compte apprenti
             'login' => 'apprINF',
             'password' => Hash::make('$ETML-PO2022'),
-            'admin' => 0
+            'right' => 0
         ], [
             // Compte enseignant
             'login' => 'profINF',
             'password' => Hash::make('$ETML-PO2022'),
-            'admin' => 1
+            'right' => 1
         ]]);
     }
 }
