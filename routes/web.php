@@ -23,14 +23,19 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('categories', [CategoryController::class, 'index'])->name('categories');
-//Route::get('categories/{name}', [CategoryController::class, ''])->name('category');
-Route::get('activities', [ActivityController::class, 'index'])->name('activities');
-//Route::get('activities/{name}', [ActivityController::class, ''])->name('activity');
-
 Route::get('login', function () {
     return view('login');
 })->name('login');
+
+Route::controller(CategoryController::class)->group(function () {
+    Route::get('categories', 'index')->name('categories');
+    Route::get('categories/{name}', '')->name('category');
+});
+
+Route::controller(CategoryController::class)->group(function () {
+    Route::get('activities', 'index')->name('activities');
+    Route::get('activities/{name}', '')->name('activity');
+});
 
 /* Routes du visiteur*/
 Route::name('user.')->group(function () {
@@ -52,7 +57,8 @@ Route::name('admin.')->group(function () {
             Route::get('admin/logout', 'logout')->name('logout');
             Route::get('user/{id}', 'showUser')->name('showUser');
             Route::get('validateActivity/{user}/{activity}', 'validateActivity')->name('validateActivity');
-            //Route::get('admin/modify', '')->name('admin.modify');
+            //Route::get('admin/modify', '')->name('modify');
+            //Route::get('admin/addActivity', '')->name('addActivity');
             Route::get('scores', [ScoreController::class, 'show'])->name('scores');
         });
     });
