@@ -14,8 +14,14 @@
     <nav>
         <ul>
             @include('components/nav-item', ['route' => route('home'), 'text' => 'Accueil'])
-            {{--TODO : Condition if visitor is connected--}}
             @include('components/nav-item', ['route' => route('activities'), 'text' => 'Activités'])
+            @include('components/nav-item', ['route' => route('categories'), 'text' => 'Categories'])
+            @auth('webadmin')
+                @include('components/nav-item', ['route' => route('admin.scores'), 'text' => 'Scores'])
+            @endauth
+            @auth('web')
+                @include('components/nav-item', ['route' => route('user.activities'), 'text' => 'Mes activités'])
+            @endauth
         </ul>
     </nav>
     {{--TODO: Gerer auth--}}
