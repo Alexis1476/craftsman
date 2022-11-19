@@ -21,6 +21,14 @@ class AuthAdmin
                 'login' => 'Vous devez vous connecter pour voir cette page'
             ]);
         }
+        $admin = auth()->guard('webadmin')->user();
+        if ($admin->right === 0) {
+            /* Si l'utilisateur est un apprenti, il ne peut pas modifier
+            son mot de passe ou ajouter une activité*/
+            if ($request->route()->named('admin.modify', 'admin.addActivity')) {
+                return redirect(route('home'));
+            }
+        }
         return $next($request);
     }
 }
