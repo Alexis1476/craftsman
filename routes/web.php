@@ -5,6 +5,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\Auth;
+use App\Http\Middleware\AuthAdmin;
+use App\Http\Middleware\AuthUser;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +28,7 @@ Route::get('/', function () {
 
 Route::get('login', function () {
     return view('login');
-})->name('login');
+})->name('login')->middleware(Auth::class);
 
 Route::controller(CategoryController::class)->group(function () {
     Route::get('categories', 'index')->name('categories');
@@ -42,7 +45,7 @@ Route::name('user.')->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::post('user/login', 'login')->name('login');
         Route::post('user/signUp', 'create')->name('signUp');
-        Route::middleware(['App\Http\Middleware\AuthUser'])->group(function () {
+        Route::middleware(AuthUser::class)->group(function () {
             Route::get('user/logout', 'logout')->name('logout');
             Route::get('user/activities', 'show')->name('activities');
         });
@@ -53,7 +56,7 @@ Route::name('user.')->group(function () {
 Route::name('admin.')->group(function () {
     Route::controller(AdminController::class)->group(function () {
         Route::post('admin/login', 'login')->name('login');
-        Route::middleware(['App\Http\Middleware\AuthAdmin'])->group(function () {
+        Route::middleware(AuthAdmin::class)->group(function () {
             Route::get('admin/logout', 'logout')->name('logout');
             Route::get('user/{id}', 'showUser')->name('showUser');
             Route::get('validateActivity/{user}/{activity}', 'validateActivity')->name('validateActivity');
