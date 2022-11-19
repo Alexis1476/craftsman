@@ -57,8 +57,8 @@ Route::name('admin.')->group(function () {
             Route::get('admin/logout', 'logout')->name('logout');
             Route::get('user/{id}', 'showUser')->name('showUser');
             Route::get('validateActivity/{user}/{activity}', 'validateActivity')->name('validateActivity');
-            //Route::get('admin/modify', '')->name('modify');
-            //Route::get('admin/addActivity', '')->name('addActivity');
+            Route::get('admin/modify', 'modify')->name('modify');
+            Route::get('admin/addActivity', 'addActivity')->name('addActivity');
             Route::get('scores', [ScoreController::class, 'show'])->name('scores');
         });
     });
