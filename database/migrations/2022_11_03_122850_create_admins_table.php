@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('login');
             $table->string('password');
-            $table->boolean('admin');
+            $table->boolean('right');
             $table->rememberToken();
             $table->timestamps();
         });
