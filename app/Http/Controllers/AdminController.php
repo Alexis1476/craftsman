@@ -16,6 +16,16 @@ class AdminController extends Controller
         return redirect(route('home'));
     }
 
+    public function modify()
+    {
+
+    }
+
+    public function addActivity()
+    {
+
+    }
+
     public function validateActivity()
     {
         $user = User::where('anonymousID', \request('user'))->first();
