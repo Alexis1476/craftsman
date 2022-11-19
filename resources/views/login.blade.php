@@ -8,6 +8,9 @@
         {{csrf_field()}}
         <label for="email">Email</label>
         <input name="email" id="email" type="email">
+        @if($errors->has('email'))
+            <p>{{$errors->first('email')}}</p>
+        @endif
         <label for="password">Password</label>
         <input name="password" type="password" id="password">
         @if($errors->has('password'))
@@ -41,6 +44,9 @@
         @endif
         <label for="password">Password</label>
         <input name="password" id="password" type="password">
+        @if($errors->has('password'))
+            <p>{{$errors->first('password')}}</p>
+        @endif
         <button type="submit">S'enregistrer</button>
     </form><br><br>
     <h1>LOGIN ADMIN</h1>
@@ -49,6 +55,9 @@
         {{csrf_field()}}
         <label for="login">Login</label>
         <input name="login" id="login" type="text">
+        @if($errors->has('login'))
+            <p>{{$errors->first('login')}}</p>
+        @endif
         <label for="password">Password</label>
         <input name="password" type="password" id="password">
         @if($errors->has('password'))
