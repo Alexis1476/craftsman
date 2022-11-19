@@ -33,24 +33,28 @@ Route::get('login', function () {
 })->name('login');
 
 /* Routes du visiteur*/
-Route::controller(UserController::class)->group(function () {
-    Route::post('user/login', 'login')->name('user.login');
-    Route::post('user/signUp', 'create')->name('user.signUp');
-    Route::middleware(['App\Http\Middleware\AuthUser'])->group(function () {
-        Route::get('user/logout', 'logout')->name('user.logout');
-        Route::get('user/activities', 'show')->name('user.activities');
+Route::name('user.')->group(function () {
+    Route::controller(UserController::class)->group(function () {
+        Route::post('user/login', 'login')->name('login');
+        Route::post('user/signUp', 'create')->name('signUp');
+        Route::middleware(['App\Http\Middleware\AuthUser'])->group(function () {
+            Route::get('user/logout', 'logout')->name('logout');
+            Route::get('user/activities', 'show')->name('activities');
+        });
     });
 });
 
-/* Routes des admins*/
-Route::controller(AdminController::class)->group(function () {
-    Route::post('admin/login', 'login')->name('admin.login');
-    Route::middleware(['App\Http\Middleware\AuthAdmin'])->group(function () {
-        Route::get('admin/logout', 'logout')->name('admin.logout');
-        Route::get('user/{id}', 'showUser')->name('admin.showUser');
-        Route::get('validateActivity/{user}/{activity}', 'validateActivity')->name('admin.validateActivity');
-        //Route::get('admin/modify', '')->name('admin.modify');
-        Route::get('scores', [ScoreController::class, 'show'])->name('scores');
+/* Routes des admins */
+Route::name('admin.')->group(function () {
+    Route::controller(AdminController::class)->group(function () {
+        Route::post('admin/login', 'login')->name('login');
+        Route::middleware(['App\Http\Middleware\AuthAdmin'])->group(function () {
+            Route::get('admin/logout', 'logout')->name('logout');
+            Route::get('user/{id}', 'showUser')->name('showUser');
+            Route::get('validateActivity/{user}/{activity}', 'validateActivity')->name('validateActivity');
+            //Route::get('admin/modify', '')->name('admin.modify');
+            Route::get('scores', [ScoreController::class, 'show'])->name('scores');
+        });
     });
 });
 
