@@ -61,7 +61,8 @@ Route::name('admin.')->group(function () {
             Route::get('user/{id}', 'showUser')->name('showUser');
             Route::get('validateActivity/{user}/{activity}', 'validateActivity')->name('validateActivity');
             Route::get('admin/modify', 'modify')->name('modify');
-            Route::get('admin/addActivity', 'addActivity')->name('addActivity');
+            Route::get('admin/addActivity', 'formAddActivity')->name('formAddActivity');
+            Route::post('admin/addActivity', 'addActivity')->name('addActivity');
             Route::get('scores', [ScoreController::class, 'show'])->name('scores');
         });
     });
