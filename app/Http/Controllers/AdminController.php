@@ -22,11 +22,16 @@ class AdminController extends Controller
 
     }
 
-    public function addActivity()
+    public function formAddActivity()
     {
         // Get categories
         $categories = Category::all();
         return View('activities.new', ['categories' => $categories]);
+    }
+
+    public function addActivity()
+    {
+
     }
 
     public function validateActivity()
