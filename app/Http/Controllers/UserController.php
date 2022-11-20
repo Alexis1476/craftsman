@@ -60,13 +60,15 @@ class UserController extends Controller
      */
     public function create()
     {
+        $regexPhoneNumber = '/^([0][1-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])$|^(([0][0]|\+)[1-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])$/';
+
         // Validation du formulaire
         request()->validate([
-            'firstName' => ['required'],
-            'lastName' => ['required'],
-            'phoneNumber' => ['required'],
-            'email' => ['required'],
-            'password' => ['required']
+            'firstName' => ['required', 'max:50'],
+            'lastName' => ['required', 'max:50'],
+            'phoneNumber' => ['required', "regex:$regexPhoneNumber"],
+            'email' => ['required', 'email'],
+            'password' => ['required', 'min:8']
         ]);
 
         // Si le visiteur s'est déjà enregistré
