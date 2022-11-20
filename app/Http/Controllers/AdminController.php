@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -23,7 +24,9 @@ class AdminController extends Controller
 
     public function addActivity()
     {
-
+        // Get categories
+        $categories = Category::all();
+        return View('activities.new', ['categories' => $categories]);
     }
 
     public function validateActivity()
