@@ -32,12 +32,25 @@ class UserController extends Controller
 
     public function login()
     {
-        /*TODO : Finir authentification user*/
+        \request()->validate([
+            'email' => ['required'],
+            'password' => ['required']
+        ]);
+
         $result = auth()->guard(self::GUARD)->attempt([
             'email' => \request('email'),
             'password' => \request('password') // password -> convention laravel
         ]);
 
+        // redirection
+        if ($result) {
+            return redirect(route('user.activities'));
+        }
+
+        // Retourne page précedente avec les données écris dans le formulaire + erreurs
+        return back()->withInput()->withErrors([
+            'email' => 'Your credentials are incorrect'
+        ]);
     }
 
     /**
