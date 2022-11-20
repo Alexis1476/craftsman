@@ -42,8 +42,13 @@
         @if($errors->has('email'))
             <p>{{$errors->first('email')}}</p>
         @endif
-        <label for="password">Password</label>
+        <label for="password">Mot de passe</label>
         <input name="password" id="password" type="password">
+        @if($errors->has('password'))
+            <p>{{$errors->first('password')}}</p>
+        @endif
+        <label for="password_confirmation">Confirmation du mot de passe</label>
+        <input name="password_confirmation" type="password" id="password_confirmation">
         @if($errors->has('password'))
             <p>{{$errors->first('password')}}</p>
         @endif

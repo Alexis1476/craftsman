@@ -68,7 +68,8 @@ class UserController extends Controller
             'lastName' => ['required', 'max:50'],
             'phoneNumber' => ['required', "regex:$regexPhoneNumber"],
             'email' => ['required', 'email'],
-            'password' => ['required', 'min:8']
+            'password' => ['required', 'confirmed', 'min:8'],
+            'password_confirmation' => ['required']
         ]);
 
         // Si le visiteur s'est déjà enregistré
