@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -31,7 +32,25 @@ class AdminController extends Controller
 
     public function addActivity()
     {
+        \request()->validate([
+            'category' => ['required'],
+            'name' => ['required', 'max:50'],
+            'description' => ['required'],
+            'laboratory' => ['required'],
+            'why' => ['required'],
+            'points' => ['required', 'numeric'],
+        ]);
 
+        Activity::create([
+            'name' => \request('name'),
+            'description' => \request('description'),
+            'why' => \request('why'),
+            'laboratory' => \request('laboratory'),
+            'points' => \request('points'),
+            'category_id' => \request('category')
+        ]);
+
+        return redirect(route('activities'));
     }
 
     public function validateActivity()
