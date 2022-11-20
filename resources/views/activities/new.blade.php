@@ -4,7 +4,7 @@
 
 @section('content')
     <h1>Ajouter une activité</h1>
-    <form action="">
+    <form action="{{route('admin.addActivity')}}" method="post">
         {{csrf_field()}}
         <label for="category">Categorie</label>
         <select name="category" id="category">
@@ -18,6 +18,7 @@
         <label for="why">Pourquoi</label>
         <textarea name="why" id="why" cols="30" rows="10"></textarea>
         @include('components.form-item', ['id' => 'points', 'label' => 'Points', 'type' => 'number'])
-        @include('components.form-item', ['id' => 'laboratory', 'label' => 'Laboratoire', 'type' => 'text'])s
+        @include('components.form-item', ['id' => 'laboratory', 'label' => 'Laboratoire', 'type' => 'text'])
+        <button type="submit">Ajouter</button>
     </form>
 @endsection
