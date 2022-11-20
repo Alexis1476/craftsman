@@ -14,12 +14,11 @@
     <nav>
         <ul>
             @include('components/nav-item', ['route' => route('home'), 'text' => 'Accueil'])
-            @include('components/nav-item', ['route' => route('activities'), 'text' => 'Activités'])
             @include('components/nav-item', ['route' => route('categories'), 'text' => 'Categories'])
+            @include('components/nav-item', ['route' => route('activities'), 'text' => 'Activités'])
             @auth('webadmin')
                 @include('components/nav-item', ['route' => route('admin.scores'), 'text' => 'Scores'])
-            @endauth
-            @auth('web')
+            @elseauth('web')
                 @include('components/nav-item', ['route' => route('user.activities'), 'text' => 'Mes activités'])
             @endauth
         </ul>
