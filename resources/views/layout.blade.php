@@ -13,25 +13,24 @@
     </a>
     <nav>
         <ul>
-            @include('components/nav-item', ['route' => route('home'), 'text' => 'Accueil'])
-            @include('components/nav-item', ['route' => route('categories'), 'text' => 'Categories'])
-            @include('components/nav-item', ['route' => route('activities'), 'text' => 'Activités'])
+            <li>@include('components/nav-item', ['route' => route('home'), 'text' => 'Accueil'])</li>
+            <li>@include('components/nav-item', ['route' => route('categories'), 'text' => 'Categories'])</li>
+            <li>@include('components/nav-item', ['route' => route('activities'), 'text' => 'Activités'])</li>
             @auth('webadmin')
-                @include('components/nav-item', ['route' => route('admin.scores'), 'text' => 'Scores'])
+                <li>@include('components/nav-item', ['route' => route('admin.scores'), 'text' => 'Scores'])</li>
             @elseauth('web')
-                @include('components/nav-item', ['route' => route('user.activities'), 'text' => 'Mes activités'])
+                <li>@include('components/nav-item', ['route' => route('user.activities'), 'text' => 'Mes activités'])</li>
             @endauth
         </ul>
     </nav>
-    {{--TODO: Gerer auth--}}
     @auth('webadmin')
         {{auth('webadmin')->user()->login}}
-        <a class="nav-item" href="{{route('admin.logout')}}">Se deconnecter</a>
+        @include('components/nav-item', ['route' => route('admin.logout'), 'text' => 'Se deconnecter'])
     @elseauth('web')
         {{auth()->user()->anonymousID}}
-        <a class="nav-item" href="{{route('user.logout')}}">Se deconnecter</a>
+        @include('components/nav-item', ['route' => route('user.logout'), 'text' => 'Se deconnecter'])
     @else
-        <a class="nav-item" href="{{route('login')}}">Se connecter</a>
+        @include('components/nav-item', ['route' => route('login'), 'text' => 'Se connecter'])
     @endauth
 </header>
 @yield('custom-header')
