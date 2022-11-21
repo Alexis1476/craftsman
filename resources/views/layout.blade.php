@@ -25,7 +25,7 @@
     </nav>
     @auth('webadmin')
         @if(auth('webadmin')->user()->right === 1)
-            @include('components/nav-item', ['route' => route('admin.modify'), 'text' => auth('webadmin')->user()->login])
+            @include('components/nav-item', ['route' => route('admin.profil'), 'text' => auth('webadmin')->user()->login])
         @else
             {{auth('webadmin')->user()->login}}
         @endif

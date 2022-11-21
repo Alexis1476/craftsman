@@ -19,7 +19,7 @@ class AdminController extends Controller
         return redirect(route('home'));
     }
 
-    public function modify()
+    public function profil()
     {
         return View('admin.profil');
     }
@@ -35,7 +35,7 @@ class AdminController extends Controller
             'password' => Hash::make(\request('password'))
         ]);
 
-        return redirect(route('profil'));
+        return redirect(route('admin.profil'));
     }
 
     public function validateActivity()
