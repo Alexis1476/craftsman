@@ -24,12 +24,17 @@
         </ul>
     </nav>
     @auth('webadmin')
-        {{auth('webadmin')->user()->login}}
+        @if(auth('webadmin')->user()->right === 1)
+            @include('components/nav-item', ['route' => route('admin.modify'), 'text' => auth('webadmin')->user()->login])
+        @else
+            {{auth('webadmin')->user()->login}}
+        @endif
         @include('components/nav-item', ['route' => route('admin.logout'), 'text' => 'Se deconnecter'])
     @elseauth('web')
         {{auth()->user()->anonymousID}}
         @include('components/nav-item', ['route' => route('user.logout'), 'text' => 'Se deconnecter'])
     @else
+
         @include('components/nav-item', ['route' => route('login'), 'text' => 'Se connecter'])
     @endauth
 </header>
