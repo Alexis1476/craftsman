@@ -69,6 +69,6 @@ Route::name('admin.')->group(function () {
 });
 
 /* Generer les migrations lors du deploiement*/
-Route::get('migrate', function () {
+/*Route::get('migrate', function () {
     $exitCode = Artisan::call('migrate:fresh --seed --force');
-});
+});*/
