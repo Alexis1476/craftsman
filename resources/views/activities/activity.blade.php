@@ -11,7 +11,8 @@
                 <label for="category">Categorie</label>
                 <select name="category" id="category">
                     @foreach($categories as $category)
-                        <option value="{{$category->id}}" {{$category->id === $activity->category_id ? 'selected' : ''}}>{{$category->name}}</option>
+                        <option
+                            value="{{$category->id}}" {{$category->id === $activity->category_id ? 'selected' : ''}}>{{$category->name}}</option>
                     @endforeach
                 </select>
                 @include('components.form-item', ['id' => 'name', 'label' => 'Nom', 'type' => 'text', 'value' => $activity->name])
@@ -22,5 +23,11 @@
                 <button type="submit">Modifier</button>
             </form>
         @endif
+    @else
+        <h1>{{$activity->name}}</h1>
+        <p>Description : {{$activity->description}}</p>
+        <p>Pourquoi : {{$activity->why}}</p>
+        <p>Points : {{$activity->points}}</p>
+        <p>Laboratoire : {{$activity->laboratory}}</p>
     @endauth
 @endsection
