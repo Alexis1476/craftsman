@@ -23,36 +23,6 @@ class AdminController extends Controller
 
     }
 
-    public function formAddActivity()
-    {
-        // Get categories
-        $categories = Category::all();
-        return View('activities.new', ['categories' => $categories]);
-    }
-
-    public function addActivity()
-    {
-        \request()->validate([
-            'category' => ['required'],
-            'name' => ['required', 'max:50'],
-            'description' => ['required'],
-            'laboratory' => ['required'],
-            'why' => ['required'],
-            'points' => ['required', 'numeric'],
-        ]);
-
-        Activity::create([
-            'name' => \request('name'),
-            'description' => \request('description'),
-            'why' => \request('why'),
-            'laboratory' => \request('laboratory'),
-            'points' => \request('points'),
-            'category_id' => \request('category')
-        ]);
-
-        return redirect(route('activities'));
-    }
-
     public function validateActivity()
     {
         $user = User::where('anonymousID', \request('user'))->first();
