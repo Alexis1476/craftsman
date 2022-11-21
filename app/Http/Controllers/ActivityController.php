@@ -27,27 +27,43 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        //
+        // Get categories
+        $categories = Category::all();
+        return View('activities.new', ['categories' => $categories]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\StoreActivityRequest $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(StoreActivityRequest $request)
+    public function store()
     {
-        //
+        \request()->validate([
+            'category' => ['required'],
+            'name' => ['required', 'max:50'],
+            'description' => ['required'],
+            'laboratory' => ['required'],
+            'why' => ['required'],
+            'points' => ['required', 'numeric'],
+        ]);
+
+        Activity::create([
+            'name' => \request('name'),
+            'description' => \request('description'),
+            'why' => \request('why'),
+            'laboratory' => \request('laboratory'),
+            'points' => \request('points'),
+            'category_id' => \request('category')
+        ]);
+
+        return redirect(route('activities'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Activity $activity
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show(Activity $activity)
+    public function show()
     {
         $categories = Category::all();
         $activity = Activity::find(request('id'));
@@ -68,13 +84,21 @@ class ActivityController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \App\Http\Requests\UpdateActivityRequest $request
-     * @param \App\Models\Activity $activity
-     * @return \Illuminate\Http\Response
      */
-    public function update(UpdateActivityRequest $request, Activity $activity)
+    public function update()
     {
-        //
+        $activity = Activity::find(request('id'));
+
+        $activity->update([
+            'name' => request('name'),
+            'description' => request('description'),
+            'why' => request('why'),
+            'points' => request('points'),
+            'laboratory' => request('laboratory'),
+            'category_id' => request('category'),
+        ]);
+
+        return back();
     }
 
     /**
