@@ -13,8 +13,8 @@
             @endforeach
         </select>
         @include('components.form-item', ['id' => 'name', 'label' => 'Nom', 'type' => 'text'])
-        @include('components.textarea', ['id' => 'description', 'label' => 'Description', 'type' => 'text', 'value' => $activity->description])
-        @include('components.textarea', ['id' => 'why', 'label' => 'Pourquoi', 'type' => 'text', 'value' => $activity->why])
+        @include('components.textarea', ['id' => 'description', 'label' => 'Description', 'type' => 'text'])
+        @include('components.textarea', ['id' => 'why', 'label' => 'Pourquoi', 'type' => 'text'])
         @include('components.form-item', ['id' => 'points', 'label' => 'Points', 'type' => 'number'])
         @include('components.form-item', ['id' => 'laboratory', 'label' => 'Laboratoire', 'type' => 'text'])
         <button type="submit">Ajouter</button>
