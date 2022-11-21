@@ -63,6 +63,7 @@ Route::name('admin.')->group(function () {
             Route::get('admin/modify', 'modify')->name('modify');
             Route::get('admin/addActivity', 'formAddActivity')->name('formAddActivity');
             Route::post('admin/addActivity', 'addActivity')->name('addActivity');
+            Route::post('admin/updateActivity', [ActivityController::class, 'update'])->name('updateActivity');
             Route::get('scores', [ScoreController::class, 'show'])->name('scores');
         });
     });
