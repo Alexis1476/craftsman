@@ -62,9 +62,10 @@ Route::name('admin.')->group(function () {
             Route::get('validateActivity/{user}/{activity}', 'validateActivity')->name('validateActivity');
             Route::get('admin/profil', 'profil')->name('profil');
             Route::post('admin/modify', 'update')->name('update');
-            Route::get('admin/addActivity', [ActivityController::class, 'create'])->name('formAddActivity');
-            Route::post('admin/addActivity', [ActivityController::class, 'store'])->name('addActivity');
-            Route::post('admin/updateActivity', [ActivityController::class, 'update'])->name('updateActivity');
+            Route::get('addActivity', [ActivityController::class, 'create'])->name('formAddActivity');
+            Route::post('addActivity', [ActivityController::class, 'store'])->name('addActivity');
+            Route::post('updateActivity', [ActivityController::class, 'update'])->name('updateActivity');
+            Route::get('users', [UserController::class, 'index'])->name('users');
             Route::get('scores', [ScoreController::class, 'show'])->name('scores');
         });
     });

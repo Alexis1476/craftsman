@@ -17,6 +17,7 @@
             <li>@include('components.nav-item', ['route' => route('categories'), 'text' => 'Categories'])</li>
             <li>@include('components.nav-item', ['route' => route('activities'), 'text' => 'Activités'])</li>
             @auth('webadmin')
+                <li>@include('components.nav-item', ['route' => route('admin.users'), 'text' => 'Visiteurs'])</li>
                 <li>@include('components.nav-item', ['route' => route('admin.scores'), 'text' => 'Scores'])</li>
             @elseauth('web')
                 <li>@include('components.nav-item', ['route' => route('user.activities'), 'text' => 'Mes activités'])</li>
