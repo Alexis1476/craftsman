@@ -6,7 +6,7 @@
     @auth('webadmin')
         {{--Si l'admin est un prof--}}
         @if(auth()->guard('webadmin')->user()->right === 1)
-            <form action="#" method="post">
+            <form action="{{route('admin.updateActivity')}}" method="post">
                 {{csrf_field()}}
                 <label for="category">Categorie</label>
                 <select name="category" id="category">
@@ -15,6 +15,7 @@
                             value="{{$category->id}}" {{$category->id === $activity->category_id ? 'selected' : ''}}>{{$category->name}}</option>
                     @endforeach
                 </select>
+                @include('components.form-item', ['id' => 'id', 'label' => '', 'type' => 'hidden', 'value' => $activity->id])
                 @include('components.form-item', ['id' => 'name', 'label' => 'Nom', 'type' => 'text', 'value' => $activity->name])
                 @include('components.textarea', ['id' => 'description', 'label' => 'Description', 'type' => 'text', 'value' => $activity->description])
                 @include('components.textarea', ['id' => 'why', 'label' => 'Description', 'type' => 'text', 'value' => $activity->why])
