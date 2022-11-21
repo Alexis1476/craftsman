@@ -61,6 +61,7 @@ Route::name('admin.')->group(function () {
             Route::get('user/{id}', 'showUser')->name('showUser');
             Route::get('validateActivity/{user}/{activity}', 'validateActivity')->name('validateActivity');
             Route::get('admin/modify', 'modify')->name('modify');
+            Route::post('admin/modify', 'update')->name('update');
             Route::get('admin/addActivity', [ActivityController::class, 'create'])->name('formAddActivity');
             Route::post('admin/addActivity', [ActivityController::class, 'store'])->name('addActivity');
             Route::post('admin/updateActivity', [ActivityController::class, 'update'])->name('updateActivity');
