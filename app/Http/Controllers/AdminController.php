@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class AdminController extends Controller
@@ -20,7 +21,21 @@ class AdminController extends Controller
 
     public function modify()
     {
+        return View('admin.profil');
+    }
 
+    public function update()
+    {
+        \request()->validate([
+            'password' => 'required', 'min:8', 'confirmed',
+            'password_confirmation' => 'required'
+        ]);
+
+        auth()->guard(self::GUARD)->user()->update([
+            'password' => Hash::make(\request('password'))
+        ]);
+
+        return redirect(route('profil'));
     }
 
     public function validateActivity()
