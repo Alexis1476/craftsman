@@ -37,7 +37,7 @@ Route::controller(CategoryController::class)->group(function () {
 
 Route::controller(ActivityController::class)->group(function () {
     Route::get('activities', 'index')->name('activities');
-    Route::get('activities/{name}', '')->name('activity');
+    Route::get('activities/{id}', 'show')->name('activity');
 });
 
 /* Routes du visiteur*/

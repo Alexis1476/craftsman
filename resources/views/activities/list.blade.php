@@ -4,7 +4,7 @@
 
 @section('content')
     @foreach($activities as $activity)
-        <h2>{{$activity->name}}</h2>
+        <a href="{{route('activity',['id' => $activity->id])}}">{{$activity->name}}</a>
         <h4>Description :</h4>
         <p>{!!$activity->description!!}</p>
         <h4>Pourquoi :</h4>
