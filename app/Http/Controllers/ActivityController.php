@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Activity;
 use App\Http\Requests\StoreActivityRequest;
 use App\Http\Requests\UpdateActivityRequest;
+use App\Models\Category;
 use Illuminate\View\View;
 
 class ActivityController extends Controller
@@ -48,7 +49,9 @@ class ActivityController extends Controller
      */
     public function show(Activity $activity)
     {
-        //
+        $categories = Category::all();
+        $activity = Activity::find(request('id'));
+        return View('activities.activity', ['activity' => $activity, 'categories' => $categories]);
     }
 
     /**
