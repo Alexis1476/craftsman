@@ -3,6 +3,11 @@
 @section('title', 'Activités')
 
 @section('content')
+    @auth('webadmin')
+        @if(auth()->guard('webadmin')->user()->right === 1)
+            <a href="{{route('admin.formAddActivity')}}">Ajouter</a>
+        @endif
+    @endauth
     @foreach($activities as $activity)
         <a href="{{route('activity',['id' => $activity->id])}}">{{$activity->name}}</a>
         <h4>Description :</h4>
