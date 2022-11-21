@@ -18,7 +18,7 @@
                 @include('components.form-item', ['id' => 'id', 'label' => '', 'type' => 'hidden', 'value' => $activity->id])
                 @include('components.form-item', ['id' => 'name', 'label' => 'Nom', 'type' => 'text', 'value' => $activity->name])
                 @include('components.textarea', ['id' => 'description', 'label' => 'Description', 'type' => 'text', 'value' => $activity->description])
-                @include('components.textarea', ['id' => 'why', 'label' => 'Description', 'type' => 'text', 'value' => $activity->why])
+                @include('components.textarea', ['id' => 'why', 'label' => 'Pourquoi', 'type' => 'text', 'value' => $activity->why])
                 @include('components.form-item', ['id' => 'points', 'label' => 'Points', 'type' => 'number', 'value' => $activity->points])
                 @include('components.form-item', ['id' => 'laboratory', 'label' => 'Laboratoire', 'type' => 'text', 'value' => $activity->laboratory])
                 <button type="submit">Modifier</button>
