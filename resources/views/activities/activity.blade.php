@@ -5,7 +5,7 @@
 @section('content')
     @auth('webadmin')
         {{--Si l'admin est un prof--}}
-        @if(auth()->guard('webadmin')->user()->right === 1)
+        @if(auth('webadmin')->user()->right === 1)
             <form action="{{route('admin.updateActivity')}}" method="post">
                 {{csrf_field()}}
                 <label for="category">Categorie</label>

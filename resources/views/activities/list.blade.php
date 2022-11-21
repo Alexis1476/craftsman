@@ -4,7 +4,7 @@
 
 @section('content')
     @auth('webadmin')
-        @if(auth()->guard('webadmin')->user()->right === 1)
+        @if(auth('webadmin')->user()->right === 1)
             <a href="{{route('admin.formAddActivity')}}">Ajouter</a>
         @endif
     @endauth
