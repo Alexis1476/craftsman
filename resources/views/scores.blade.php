@@ -3,7 +3,9 @@
 @section('title', 'ETML - Craftman scores')
 
 @section('content')
-@foreach($scores as $score)
+@forelse($scores as $score)
     <h2>{{$score->user}}  {{$score->total}}</h2>
-@endforeach
+@empty
+    Pas de visiteurs
+@endforelse
 @endsection
