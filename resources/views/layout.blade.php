@@ -13,13 +13,13 @@
     </a>
     <nav>
         <ul>
-            <li>@include('components/nav-item', ['route' => route('home'), 'text' => 'Accueil'])</li>
-            <li>@include('components/nav-item', ['route' => route('categories'), 'text' => 'Categories'])</li>
-            <li>@include('components/nav-item', ['route' => route('activities'), 'text' => 'Activités'])</li>
+            <li>@include('components.nav-item', ['route' => route('home'), 'text' => 'Accueil'])</li>
+            <li>@include('components.nav-item', ['route' => route('categories'), 'text' => 'Categories'])</li>
+            <li>@include('components.nav-item', ['route' => route('activities'), 'text' => 'Activités'])</li>
             @auth('webadmin')
-                <li>@include('components/nav-item', ['route' => route('admin.scores'), 'text' => 'Scores'])</li>
+                <li>@include('components.nav-item', ['route' => route('admin.scores'), 'text' => 'Scores'])</li>
             @elseauth('web')
-                <li>@include('components/nav-item', ['route' => route('user.activities'), 'text' => 'Mes activités'])</li>
+                <li>@include('components.nav-item', ['route' => route('user.activities'), 'text' => 'Mes activités'])</li>
             @endauth
         </ul>
     </nav>
