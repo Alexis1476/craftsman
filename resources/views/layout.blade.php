@@ -38,7 +38,7 @@
     @endauth
 </header>
 @yield('custom-header')
-<main>
+<main class="mx-auto">
     @yield('content')
 </main>
 <footer>
