@@ -1,3 +1,5 @@
-<a href="{{route('category',['id'=>$category])}}"><h2>{{$category->name}}</h2></a>
-<img src="{{asset("img/activities/$category->image")}}" alt="{{$category->name}}">
+<div>
+    <img src="{{asset("img/activities/$category->image")}}" alt="{{$category->name}}">
+    <a class="font-bold text-xl mb-2" href="{{route('category',['id'=>$category])}}">{{$category->name}}</a>
+</div>
 {{--<p>{{$category->description}}</p>--}}
