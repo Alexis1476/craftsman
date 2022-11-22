@@ -14,12 +14,12 @@
     <nav>
         <ul>
             <li>@include('components.nav-item', ['route' => route('home'), 'text' => 'Accueil'])</li>
-            <li>@include('components.nav-item', ['route' => route('categories'), 'text' => 'Activités'])</li>
+            <li>@include('components.nav-item', ['route' => route('categories'), 'text' => 'Categories'])</li>
             @auth('webadmin')
                 <li>@include('components.nav-item', ['route' => route('admin.users'), 'text' => 'Visiteurs'])</li>
                 <li>@include('components.nav-item', ['route' => route('admin.scores'), 'text' => 'Scores'])</li>
             @elseauth('web')
-                <li>@include('components.nav-item', ['route' => route('user.activities'), 'text' => 'Mes activités'])</li>
+                <li>@include('components.nav-item', ['route' => route('user.profil'), 'text' => 'Mes activités'])</li>
             @endauth
         </ul>
     </nav>
@@ -31,10 +31,8 @@
         @endif
         @include('components/nav-item', ['route' => route('admin.logout'), 'text' => 'Se deconnecter'])
     @elseauth('web')
-        {{auth()->user()->anonymousID}}
         @include('components/nav-item', ['route' => route('user.logout'), 'text' => 'Se deconnecter'])
     @else
-
         @include('components/nav-item', ['route' => route('login'), 'text' => 'Se connecter'])
     @endauth
 </header>
