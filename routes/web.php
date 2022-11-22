@@ -32,7 +32,7 @@ Route::get('login', function () {
 
 Route::controller(CategoryController::class)->group(function () {
     Route::get('categories', 'index')->name('categories');
-    Route::get('categories/{name}', '')->name('category');
+    Route::get('categories/{id}', 'show')->name('category');
 });
 
 Route::controller(ActivityController::class)->group(function () {
