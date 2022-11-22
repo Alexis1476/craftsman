@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Activités')
+@section('title', isset($category) ? $category->name : 'Activités')
 
 @section('content')
     @if(isset($category))
