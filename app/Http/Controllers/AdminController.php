@@ -49,9 +49,10 @@ class AdminController extends Controller
 
     function showUser()
     {
-        $user = User::where('anonymousID', \request('id'))->firstOrFail(); //mWUa
+        $user = User::where('anonymousID', \request('id'))->firstOrFail();
         $userActivities = $user->activities()->where('finished', 0)->get();
-        return View('user.activities', ['user' => $user, 'activities' => $userActivities]);
+        $score = $user->score();
+        return View('user.activities', ['user' => $user, 'score' => $score, 'activities' => $userActivities]);
     }
 
     //
