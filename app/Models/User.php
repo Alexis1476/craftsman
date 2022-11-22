@@ -34,7 +34,7 @@ class User extends Authenticatable
     {
         $score = User::join('user_activities', 'users.id', '=', 'user_activities.user_id')
             ->join('activities', 'activities.id', '=', 'user_activities.activity_id')
-            ->select(DB::raw('SUM(points) AS total'))->where('users.anonymousID', $this->anonymousID)
+            ->select(DB::raw('SUM(points) AS total'))->where('users.anonymousID', $this->anonymousID)->where('finished', 1)
             ->groupBy('users.anonymousID')->orderBy('total', 'desc')->limit(10)->get()
             ->map(function ($result) {
                 return $result->total;

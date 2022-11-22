@@ -15,7 +15,7 @@ class ScoreController extends Controller
     {
         $scores = DB::table('users')->join('user_activities', 'users.id', '=', 'user_activities.user_id')
             ->join('activities', 'activities.id', '=', 'user_activities.activity_id')
-            ->select(DB::raw('users.anonymousID AS user, SUM(points) AS total'))
+            ->select(DB::raw('users.anonymousID AS user, SUM(points) AS total'))->where('finished', 1)
             ->groupBy('users.anonymousID')->orderBy('total', 'desc')->limit(10)->get();
 
         return View('scores', ['scores' => $scores]);
