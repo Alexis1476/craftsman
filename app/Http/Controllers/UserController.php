@@ -45,7 +45,7 @@ class UserController extends Controller
 
         // redirection
         if ($result) {
-            return redirect(route('user.activities'));
+            return redirect(route('user.profil'));
         }
 
         // Retourne page précedente avec les données écris dans le formulaire + erreurs
