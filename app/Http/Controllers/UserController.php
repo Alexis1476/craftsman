@@ -103,7 +103,7 @@ class UserController extends Controller
             'password' => \request('password') // password -> convention laravel
         ]);
 
-        return redirect(route('user.activities'));
+        return redirect(route('user.profil'));
     }
 
     /**
@@ -125,9 +125,10 @@ class UserController extends Controller
      */
     public function show()
     {
-        $activities = \auth()->user()->activities()->where('finished', 0)->get();
-
-        return View('user.activities', ['activities' => $activities, 'user' => auth()->guard(self::GUARD)->user()]);
+        $user = auth(self::GUARD)->user();
+        $activities = $user->activities()->where('finished', 0)->get();
+        $score = $user->score();
+        return View('user.activities', ['score' => $score, 'activities' => $activities, 'user' => $user]);
     }
 
     /**

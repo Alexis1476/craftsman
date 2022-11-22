@@ -1,8 +1,11 @@
 @extends('layout')
 
-@section('title', 'Mes activités')
+@section('title', "Profil $user->anonymousID")
 
 @section('content')
+    @if(isset($score))
+        {{$score}}
+    @endif
     <h3>{{$user->anonymousID}}</h3>
     <p>{{$user->email}}</p>
     @foreach($activities as $activity)
