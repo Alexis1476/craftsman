@@ -60,12 +60,12 @@ class AdminController extends Controller
     {
         \request()->validate([
             'login' => ['required'],
-            'password' => ['required']
+            'password_admin' => ['required']
         ]);
 
         $result = auth()->guard(self::GUARD)->attempt([
             'login' => \request('login'),
-            'password' => \request('password') // password -> convention laravel
+            'password' => \request('password_admin')
         ]);
 
         // redirection
