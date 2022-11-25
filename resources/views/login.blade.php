@@ -5,8 +5,9 @@
 @section('content')
     {{--Form user login--}}
     <div class="flex flex-col my-4">
-        <h3 class="text-xl font-semibold text-center">Visiteur</h3>
+
         <form class="w-full max-w-lg" action="{{route('user.login')}}" method="post">
+            <h3 class="text-xl font-semibold my-4 text-center">Visiteur</h3>
             {{csrf_field()}}
             <div class="flex flex-wrap -mx-3 mb-2">
                 @include('components.form-item',['id' => 'email', 'label'=> 'Email', 'type' => 'email'])
@@ -18,7 +19,7 @@
         </form>
     </div>
     <div class="flex flex-col my-4">
-        <h3 class="text-xl font-semibold text-center">Admin</h3>
+        <h3 class="text-xl font-semibold my-4 text-center">Admin</h3>
         {{--Form user login--}}
         <form class="w-full max-w-lg" action="{{route('admin.login')}}" method="post">
             {{csrf_field()}}

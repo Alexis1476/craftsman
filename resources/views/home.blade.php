@@ -15,8 +15,8 @@
     @auth('webadmin')
     @elseauth('web')
     @else
-        <h3 class="text-xl font-semibold">S'enregistrer</h3>
         <form class="w-full max-w-lg" action="{{route('user.signUp')}}" method="post">
+            <h3 class="text-xl font-semibold my-4 text-center">S'enregistrer</h3>
             {{csrf_field()}}
             <div class="flex flex-wrap -mx-3 mb-2">
                 @include('components.form-item',['id' => 'firstName', 'label'=> 'Prénom', 'type' => 'text'])
