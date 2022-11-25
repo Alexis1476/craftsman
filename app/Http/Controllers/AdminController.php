@@ -27,8 +27,8 @@ class AdminController extends Controller
     public function update()
     {
         \request()->validate([
-            'password' => 'required', 'min:8', 'confirmed',
-            'password_confirmation' => 'required'
+            'password' => ['required', 'confirmed', 'min:8'],
+            'password_confirmation' => ['required']
         ]);
 
         auth()->guard(self::GUARD)->user()->update([
