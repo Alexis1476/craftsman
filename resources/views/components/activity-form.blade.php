@@ -5,7 +5,7 @@
     @endisset
     <div class="flex flex-wrap -mx-3 mb-2">
         @include('components.form-item', ['id' => 'name', 'label' => 'Nom', 'type' => 'text', 'value' => isset($activity) ? $activity->name : ''])
-        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 grow">
+        <div class="w-full md:w-1/3 px-3 mb-2 md:mb-0 grow">
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
                 Category
             </label>
@@ -30,7 +30,7 @@
         @include('components.textarea', ['id' => 'description', 'label' => 'Description', 'type' => 'text', 'value' => isset($activity) ? $activity->description : ''])
         @include('components.textarea', ['id' => 'why', 'label' => 'Pourquoi', 'type' => 'text', 'value' => isset($activity) ? $activity->why : ''])
     </div>
-    <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="flex flex-wrap -mx-3 mb-2">
         @include('components.form-item', ['id' => 'points', 'label' => 'Points', 'type' => 'number', 'value' => isset($activity) ? $activity->points : ''])
         @include('components.form-item', ['id' => 'laboratory', 'label' => 'Laboratoire', 'type' => 'text', 'value' => isset($activity) ? $activity->laboratory : ''])
     </div>
