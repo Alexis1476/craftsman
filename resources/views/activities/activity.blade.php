@@ -10,9 +10,11 @@
             @include('components.activity-form',['route' => route('admin.addActivity'), 'categories' => $categories, 'activity' => $activity])
         @endif
     @else
-        <p>Description : {!!$activity->description!!}</p>
-        <p>Pourquoi : {!!$activity->why!!}</p>
-        <p>Points : {{$activity->points}}</p>
-        <p>Laboratoire : {{$activity->laboratory}}</p>
+        <div class="space-y-4">
+            <p><strong>Description :</strong> {!!$activity->description!!}</p>
+            <p><strong>Pourquoi ? :</strong> {!!$activity->why!!}</p>
+            <p><strong>Points :</strong> {{$activity->points}}</p>
+            <p><strong>Laboratoire :</strong> {{$activity->laboratory}}</p>
+        </div>
     @endauth
 @endsection
