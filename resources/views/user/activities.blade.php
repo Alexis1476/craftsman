@@ -8,20 +8,9 @@
     @if(isset($score))
         <p><strong>Mes points :</strong> {{$score}}</p>
     @endif
-    <div>
-        <h3 class="font-bold text-xl">Activités</h3>
+    <div class="flex flex-wrap gap-5 justify-center my-6">
         @foreach($activities as $activity)
-            <img src="{{asset("img/categories/$activity->category->img")}}" alt="Categorie">
-            <h3>{{$activity->name}}</h3>
-            <h4>Description :</h4>
-            <p>{!!$activity->description!!}</p>
-            <h4>Pourquoi :</h4>
-            <p>{!!$activity->why!!}</p>
-            <span><strong>Points : </strong>{{$activity->points}}</span>
-            <p>Laboratoire : {{$activity->laboratory}}</p>
-            @auth('webadmin')
-                <a href="{{route('admin.validateActivity',['user' => $user->anonymousID, 'activity' => $activity->id])}}">Valider</a>
-            @endauth
+            @include('components.activity-card', ['activity' => $activity, 'imgCategory' => $activity->category->image])
         @endforeach
     </div>
 @endsection
