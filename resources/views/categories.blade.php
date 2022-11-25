@@ -3,7 +3,7 @@
 @section('title', 'Categories')
 
 @section('content')
-    <h1 class="text-3xl font-bold mb-2">Categories</h1>
+    <h1 class="text-3xl font-bold mb-8">Categories</h1>
     <div class="w-full my-4 flex justify-center">
         @auth('webadmin')
             @if(auth('webadmin')->user()->right === 1)

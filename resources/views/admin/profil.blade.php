@@ -3,7 +3,7 @@
 @section('title', 'Profil')
 
 @section('content')
-    {{auth('webadmin')->user()->login}}
+    <h1 class="text-3xl font-bold mb-8">Modifier le mot de passe</h1>
     <form class="w-full max-w-lg" action="{{route('admin.update')}}" method="post">
         {{csrf_field()}}
         <div class="flex flex-wrap -mx-3 mb-2">
