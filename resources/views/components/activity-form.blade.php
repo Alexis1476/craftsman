@@ -35,6 +35,6 @@
         @include('components.form-item', ['id' => 'laboratory', 'label' => 'Laboratoire', 'type' => 'text', 'value' => isset($activity) ? $activity->laboratory : ''])
     </div>
     <button class="mx-auto bg-[#371877] hover:opacity-75 text-white font-bold py-2 px-4 rounded-full" type="submit">
-        Ajouter
+        @isset($activity) Modifier @else Ajouter @endisset
     </button>
 </form>
