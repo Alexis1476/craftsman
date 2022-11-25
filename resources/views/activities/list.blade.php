@@ -5,7 +5,7 @@
 @section('content')
     @if(isset($category))
         <h1 class="text-3xl font-bold mb-8">{{$category->name}}</h1>
-        <img class="mb-8" src="{{asset("img/activities/$category->image")}}" alt="{{$category->name}}">
+        <img class="mb-8" src="{{asset("img/categories/$category->image")}}" alt="{{$category->name}}">
     @else
         <h1 class="text-3xl font-bold mb-8">Activités</h1>
     @endif
