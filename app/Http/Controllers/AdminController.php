@@ -24,6 +24,18 @@ class AdminController extends Controller
         return View('admin.profil');
     }
 
+    public function searchUser()
+    {
+        $user = User::where('anonymousID', \request('id'))->first();
+
+        if (!$user) {
+            return back()->withErrors([
+                'id' => 'L\'utilisateur n\'existe pas'
+            ]);
+        }
+        return redirect(route('admin.showUser', ['id' => $user->anonymousID]));
+    }
+
     public function update()
     {
         \request()->validate([

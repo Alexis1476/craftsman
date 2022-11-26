@@ -62,6 +62,7 @@ Route::name('admin.')->group(function () {
             Route::post('updateActivity', [ActivityController::class, 'update'])->name('updateActivity');
             Route::get('users', [UserController::class, 'index'])->name('users');
             Route::get('scores', [ScoreController::class, 'show'])->name('scores');
+            Route::post('searchUser','searchUser')->name('searchUser');
         });
     });
 });
