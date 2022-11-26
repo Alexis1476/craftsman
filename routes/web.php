@@ -71,3 +71,10 @@ Route::name('admin.')->group(function () {
 /*Route::get('migrate', function () {
     $exitCode = Artisan::call('migrate:fresh --seed --force');
 });*/
+
+/* Optimiser l'application*/
+/*Route::get('migrate', function () {
+    $exitCode = Artisan::call('config:cache');
+    $exitCode = Artisan::call('route:cache');
+    $exitCode = Artisan::call('view:cache');
+});*/
