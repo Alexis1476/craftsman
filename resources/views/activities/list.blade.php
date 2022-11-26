@@ -13,15 +13,9 @@
         <table class="text-sm text-left text-gray-500 table-auto max-w-[90%] mx-auto">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
-                <th class="p-3">
-                    Nom
-                </th>
-                <th class="p-3">
-                    Laboratoire
-                </th>
-                <th class="p-3">
-                    Points
-                </th>
+                <th class="p-3"> Nom</th>
+                <th class="p-3"> Laboratoire</th>
+                <th class="p-3"> Points</th>
             </tr>
             </thead>
             <tbody>
@@ -31,12 +25,8 @@
                         <a href="{{route('activity',['id' => $activity->id])}}"
                            class="font-medium text-blue-600 hover:underline">{{$activity->name}}</a>
                     </th>
-                    <td class="p-3">
-                        {{$activity->laboratory}}
-                    </td>
-                    <td class="p-3">
-                        {{$activity->points}}
-                    </td>
+                    <td class="p-3">{{$activity->laboratory}}</td>
+                    <td class="p-3">{{$activity->points}}</td>
                 </tr>
             @endforeach
             </tbody>
