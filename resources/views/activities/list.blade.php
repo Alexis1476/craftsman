@@ -9,7 +9,7 @@
     @else
         <h1 class="text-3xl font-bold mb-8">Activités</h1>
     @endif
-    @if($activities)
+    @if(count($activities) > 0)
         <table class="text-sm text-left text-gray-500 table-auto max-w-[90%] mx-auto">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
@@ -31,5 +31,7 @@
             @endforeach
             </tbody>
         </table>
+    @else
+        <h3>Il n'y a pas d'activités actuellement</h3>
     @endif
 @endsection
