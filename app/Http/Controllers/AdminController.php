@@ -64,7 +64,7 @@ class AdminController extends Controller
         $user = User::where('anonymousID', \request('id'))->firstOrFail();
         $userActivities = $user->activities()->where('finished', 0)->get();
         $score = $user->score();
-        return View('user.activities', ['user' => $user, 'score' => $score, 'activities' => $userActivities]);
+        return View('user.activities', ['user' => $user, 'activities' => $userActivities]);
     }
 
     //
