@@ -23,7 +23,7 @@
             <div class="hidden w-full md:block md:w-auto" id="navbar-default">
                 <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
                     <li>@include('components.nav-item', ['route' => route('home'), 'text' => 'Accueil'])</li>
-                    <li>@include('components.nav-item', ['route' => route('user.login'), 'text' => 'Se connecter'])</li>
+                    <li>@include('components.nav-item', ['route' => route('login'), 'text' => 'Se connecter'])</li>
                     <li>@include('components.nav-item', ['route' => route('categories'), 'text' => 'Catégories'])</li>
                     <li>@include('components.nav-item', ['route' => route('activities'), 'text' => 'Cartes'])</li>
                 </ul>
@@ -36,7 +36,7 @@
             <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded">
                 <ul class="space-y-2">
                     <li>@include('components.side-nav-item', ['route' => route('home'), 'text' => 'Accueil', 'icon' => asset('img/icons/home.svg')])</li>
-                    <li>@include('components.side-nav-item', ['route' => route('user.login'), 'text' => 'Se connecter', 'icon' => asset('img/icons/login.svg')])</li>
+                    <li>@include('components.side-nav-item', ['route' => route('login'), 'text' => 'Se connecter', 'icon' => asset('img/icons/login.svg')])</li>
                     <li>@include('components.side-nav-item', ['route' => route('categories'), 'text' => 'Catégories', 'icon' => asset('img/icons/categories.svg')])</li>
                     <li>@include('components.side-nav-item', ['route' => route('activities'), 'text' => 'Cartes', 'icon' => asset('img/icons/activities.svg')])</li>
                 </ul>
@@ -68,15 +68,22 @@
     @else
         @include('components/nav-item', ['route' => route('login'), 'text' => 'Se connecter'])
     @endauth
---}}
+    --}}
 
 </header>
 @yield('custom-header')
 <main class="w-11/12 mx-auto flex flex-col items-center">
     @yield('content')
 </main>
-<footer>
-    ETML
+
+<footer class="p-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 fixed bottom-0">
+    <span class="text-sm text-gray-500 sm:text-center">© 2022 ETML. Tous droits réservés.</span>
+    <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 sm:mt-0">
+        <li class="mx-4">@include('components.nav-item', ['route' => route('home'), 'text' => 'Accueil'])</li>
+        <li class="mx-4">@include('components.nav-item', ['route' => route('login'), 'text' => 'Se connecter'])</li>
+        <li class="mx-4">@include('components.nav-item', ['route' => route('categories'), 'text' => 'Catégories'])</li>
+        <li class="mx-4">@include('components.nav-item', ['route' => route('activities'), 'text' => 'Cartes'])</li>
+    </ul>
 </footer>
 
 <script src="{{asset('js/menu.js')}}"></script>
