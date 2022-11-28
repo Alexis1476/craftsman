@@ -36,7 +36,7 @@
             </div>
         </div>
     </nav>
-    <div id="sideBar" class="flex justify-end absolute right-1">
+    <div id="sideBar" class="flex justify-end absolute right-1 z-20">
         <aside class="w-64" aria-label="Sidebar">
             <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded">
                 <ul class="space-y-2">
