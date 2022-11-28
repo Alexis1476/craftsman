@@ -28,9 +28,23 @@
                 <div class="hidden w-full md:block md:w-auto" id="navbar-default">
                     <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
                         <li>@include('components.nav-item', ['route' => route('home'), 'text' => 'Accueil'])</li>
-                        <li>@include('components.nav-item', ['route' => route('login'), 'text' => 'Se connecter'])</li>
                         <li>@include('components.nav-item', ['route' => route('categories'), 'text' => 'Catégories'])</li>
                         <li>@include('components.nav-item', ['route' => route('activities'), 'text' => 'Cartes'])</li>
+                        @auth('webadmin')
+                            @if(auth('webadmin')->user()->right === 1)
+                                <li> @include('components.nav-item', ['route' => route('admin.profil'), 'text' => auth('webadmin')->user()->login])</li>
+                            @else
+                                {{--{{auth('webadmin')->user()->login}}--}}
+                            @endif
+                            <li>@include('components.nav-item', ['route' => route('admin.scores'), 'text' => 'Score'])</li>
+                            <li> @include('components.nav-item', ['route' => route('admin.users'), 'text' => 'Visiteurs'])</li>
+                            <li> @include('components.nav-item', ['route' => route('admin.logout'), 'text' => 'Se deconnecter'])</li>
+                        @elseauth('web')
+                            <li> @include('components.nav-item', ['route' => route('user.profil'), 'text' => 'Mes activités'])</li>
+                            <li>@include('components.nav-item', ['route' => route('user.logout'), 'text' => 'Se deconnecter'])</li>
+                        @else
+                            <li> @include('components.nav-item', ['route' => route('login'), 'text' => 'Se connecter'])</li>
+                        @endauth
                     </ul>
                 </div>
             </div>
@@ -47,10 +61,13 @@
                         @if(auth('webadmin')->user()->right === 1)
                             @include('components.side-nav-item', ['route' => route('admin.profil'), 'text' => auth('webadmin')->user()->login, 'icon' => asset('img/icons/login.svg')])
                         @else
-                            {{auth('webadmin')->user()->login}}
+                            {{--{{auth('webadmin')->user()->login}}--}}
                         @endif
+                        @include('components.side-nav-item', ['route' => route('admin.scores'), 'text' => 'Score', 'icon' => asset('img/icons/home.svg')])
+                        @include('components.side-nav-item', ['route' => route('admin.users'), 'text' => 'Visiteurs', 'icon' => asset('img/icons/home.svg')])
                         @include('components.side-nav-item', ['route' => route('admin.logout'), 'text' => 'Se deconnecter', 'icon' => asset('img/icons/logout.svg')])
                     @elseauth('web')
+                        @include('components.side-nav-item', ['route' => route('user.profil'), 'text' => 'Mes activités', 'icon' => asset('img/icons/logout.svg')])
                         @include('components.side-nav-item', ['route' => route('user.logout'), 'text' => 'Se deconnecter', 'icon' => asset('img/icons/logout.svg')])
                     @else
                         @include('components.side-nav-item', ['route' => route('login'), 'text' => 'Se connecter', 'icon' => asset('img/icons/login.svg')])
