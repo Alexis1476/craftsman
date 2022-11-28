@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 </head>
 <body class="flex flex-col h-full">
 <header>
@@ -13,7 +12,7 @@
         <div class="container flex flex-wrap items-center justify-between mx-auto">
             <div class="container flex flex-wrap items-center justify-between mx-auto">
                 <a href="{{route('home')}}" class="flex items-center">
-                    <img src="{{asset('img/logo.png')}}" class="h-6 sm:h-9 ml-3" alt="ETML logo"/>
+                    <img src="{{asset('img/logo.png')}}" class="h-4 sm:h-4 ml-3" alt="ETML logo"/>
                 </a>
                 <button data-collapse-toggle="navbar-default" type="button"
                         class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
@@ -32,18 +31,18 @@
                         <li>@include('components.nav-item', ['route' => route('activities'), 'text' => 'Cartes'])</li>
                         @auth('webadmin')
                             @if(auth('webadmin')->user()->right === 1)
-                                <li> @include('components.nav-item', ['route' => route('admin.profil'), 'text' => auth('webadmin')->user()->login])</li>
+                                <li>@include('components.nav-item', ['route' => route('admin.profil'), 'text' => auth('webadmin')->user()->login])</li>
                             @else
-                                {{--{{auth('webadmin')->user()->login}}--}}
+                                <li>@include('components.nav-item', ['route' => '#', 'text' => auth('webadmin')->user()->login])</li>
                             @endif
                             <li>@include('components.nav-item', ['route' => route('admin.scores'), 'text' => 'Score'])</li>
-                            <li> @include('components.nav-item', ['route' => route('admin.users'), 'text' => 'Visiteurs'])</li>
-                            <li> @include('components.nav-item', ['route' => route('admin.logout'), 'text' => 'Se deconnecter'])</li>
+                            <li>@include('components.nav-item', ['route' => route('admin.users'), 'text' => 'Visiteurs'])</li>
+                            <li>@include('components.nav-item', ['route' => route('admin.logout'), 'text' => 'Se deconnecter'])</li>
                         @elseauth('web')
-                            <li> @include('components.nav-item', ['route' => route('user.profil'), 'text' => 'Mes activités'])</li>
+                            <li>@include('components.nav-item', ['route' => route('user.profil'), 'text' => 'Mes activités'])</li>
                             <li>@include('components.nav-item', ['route' => route('user.logout'), 'text' => 'Se deconnecter'])</li>
                         @else
-                            <li> @include('components.nav-item', ['route' => route('login'), 'text' => 'Se connecter'])</li>
+                            <li>@include('components.nav-item', ['route' => route('login'), 'text' => 'Se connecter'])</li>
                         @endauth
                     </ul>
                 </div>
@@ -61,13 +60,13 @@
                         @if(auth('webadmin')->user()->right === 1)
                             @include('components.side-nav-item', ['route' => route('admin.profil'), 'text' => auth('webadmin')->user()->login, 'icon' => asset('img/icons/login.svg')])
                         @else
-                            {{--{{auth('webadmin')->user()->login}}--}}
+                            @include('components.side-nav-item', ['route' => '#', 'text' => auth('webadmin')->user()->login, 'icon' => asset('img/icons/login.svg')])
                         @endif
-                        @include('components.side-nav-item', ['route' => route('admin.scores'), 'text' => 'Score', 'icon' => asset('img/icons/home.svg')])
-                        @include('components.side-nav-item', ['route' => route('admin.users'), 'text' => 'Visiteurs', 'icon' => asset('img/icons/home.svg')])
+                        @include('components.side-nav-item', ['route' => route('admin.scores'), 'text' => 'Score', 'icon' => asset('img/icons/score.svg')])
+                        @include('components.side-nav-item', ['route' => route('admin.users'), 'text' => 'Visiteurs', 'icon' => asset('img/icons/users.svg')])
                         @include('components.side-nav-item', ['route' => route('admin.logout'), 'text' => 'Se deconnecter', 'icon' => asset('img/icons/logout.svg')])
                     @elseauth('web')
-                        @include('components.side-nav-item', ['route' => route('user.profil'), 'text' => 'Mes activités', 'icon' => asset('img/icons/logout.svg')])
+                        @include('components.side-nav-item', ['route' => route('user.profil'), 'text' => 'Mes activités', 'icon' => asset('img/icons/userActivities.svg')])
                         @include('components.side-nav-item', ['route' => route('user.logout'), 'text' => 'Se deconnecter', 'icon' => asset('img/icons/logout.svg')])
                     @else
                         @include('components.side-nav-item', ['route' => route('login'), 'text' => 'Se connecter', 'icon' => asset('img/icons/login.svg')])
