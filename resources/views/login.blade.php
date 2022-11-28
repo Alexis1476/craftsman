@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'ETML - Craftman Login')
+@section('title', 'Connexion')
 
 @section('content')
     {{--Form user login--}}

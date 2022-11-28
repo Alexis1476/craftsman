@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'ETML - Craftman scores')
+@section('title', 'Scores')
 
 @section('content')
     <h1 class="text-3xl font-bold mb-8">Scores</h1>

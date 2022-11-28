@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'ETML - Craftman')
+@section('title', 'ETML - Craftsman')
 
 @section('custom-header')
     <div class="bg">
@@ -10,7 +10,7 @@
 @endsection
 
 @section('content')
-    <h2 class="text-2xl font-bold">Craftman Challenge</h2>
+    <h2 class="text-2xl font-bold">Craftsman Challenge</h2>
     {{--Form to sign up--}}
     @auth('webadmin')
     @elseauth('web')
