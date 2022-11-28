@@ -36,39 +36,26 @@
             <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded">
                 <ul class="space-y-2">
                     <li>@include('components.side-nav-item', ['route' => route('home'), 'text' => 'Accueil', 'icon' => asset('img/icons/home.svg')])</li>
-                    <li>@include('components.side-nav-item', ['route' => route('login'), 'text' => 'Se connecter', 'icon' => asset('img/icons/login.svg')])</li>
                     <li>@include('components.side-nav-item', ['route' => route('categories'), 'text' => 'Catégories', 'icon' => asset('img/icons/categories.svg')])</li>
                     <li>@include('components.side-nav-item', ['route' => route('activities'), 'text' => 'Cartes', 'icon' => asset('img/icons/activities.svg')])</li>
+
+                    @auth('webadmin')
+                        @if(auth('webadmin')->user()->right === 1)
+                            @include('components.side-nav-item', ['route' => route('admin.profil'), 'text' => auth('webadmin')->user()->login, 'icon' => asset('img/icons/login.svg')])
+                        @else
+                            {{auth('webadmin')->user()->login}}
+                        @endif
+
+                        @include('components.side-nav-item', ['route' => route('admin.logout'), 'text' => 'Se deconnecter', 'icon' => asset('img/icons/logout.svg')])
+                    @elseauth('web')
+                        @include('components.side-nav-item', ['route' => route('user.logout'), 'text' => 'Se deconnecter', 'icon' => asset('img/icons/logout.svg')])
+                    @else
+                        @include('components.side-nav-item', ['route' => route('login'), 'text' => 'Se connecter', 'icon' => asset('img/icons/login.svg')])
+                    @endauth
                 </ul>
             </div>
         </aside>
     </div>
-
-    {{--<nav>
-        <ul>
-            <li>@include('components.nav-item', ['route' => route('home'), 'text' => 'Accueil'])</li>
-            <li>@include('components.nav-item', ['route' => route('categories'), 'text' => 'Categories'])</li>
-            @auth('webadmin')
-                <li>@include('components.nav-item', ['route' => route('admin.users'), 'text' => 'Visiteurs'])</li>
-                <li>@include('components.nav-item', ['route' => route('admin.scores'), 'text' => 'Scores'])</li>
-            @elseauth('web')
-                <li>@include('components.nav-item', ['route' => route('user.profil'), 'text' => 'Mes activités'])</li>
-            @endauth
-        </ul>
-    </nav>
-    @auth('webadmin')
-        @if(auth('webadmin')->user()->right === 1)
-            @include('components/nav-item', ['route' => route('admin.profil'), 'text' => auth('webadmin')->user()->login])
-        @else
-            {{auth('webadmin')->user()->login}}
-        @endif
-        @include('components/nav-item', ['route' => route('admin.logout'), 'text' => 'Se deconnecter'])
-    @elseauth('web')
-        @include('components/nav-item', ['route' => route('user.logout'), 'text' => 'Se deconnecter'])
-    @else
-        @include('components/nav-item', ['route' => route('login'), 'text' => 'Se connecter'])
-    @endauth
-    --}}
 
 </header>
 @yield('custom-header')
