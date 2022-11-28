@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
 </head>
-<body>
+<body class="flex flex-col h-full">
 <header>
     <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
@@ -31,7 +31,7 @@
         </div>
     </nav>
 
-    <div id="sideBar" class="flex justify-end" >
+    <div id="sideBar" class="flex justify-end absolute right-1">
         <aside class="w-64" aria-label="Sidebar">
             <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded">
                 <ul class="space-y-2">
@@ -72,19 +72,18 @@
 
 </header>
 @yield('custom-header')
-<main class="w-11/12 mx-auto flex flex-col items-center">
+<main class="w-11/12 mx-auto flex flex-col items-center grow">
     @yield('content')
 </main>
 
-<footer class="p-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 fixed bottom-0">
-    <span class="text-sm text-gray-500 sm:text-center">© 2022 ETML. Tous droits réservés.</span>
-    <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 sm:mt-0">
-        <li class="mx-4">@include('components.nav-item', ['route' => route('home'), 'text' => 'Accueil'])</li>
-        <li class="mx-4">@include('components.nav-item', ['route' => route('login'), 'text' => 'Se connecter'])</li>
-        <li class="mx-4">@include('components.nav-item', ['route' => route('categories'), 'text' => 'Catégories'])</li>
-        <li class="mx-4">@include('components.nav-item', ['route' => route('activities'), 'text' => 'Cartes'])</li>
-    </ul>
+<footer class="p-4 bg-white rounded-lg shadow md:flex items-center text-center md:justify-between md:p-6 md:flex-col">
+    <span class="text-sm text-gray-500">© 2022 ETML. Tous droits réservés.</span>
+    <a href="https://github.com/Alexis1476" class="flex items-center justify-center">
+        <img class="w-4 h-4 mr-2" src="{{asset('img/icons/github.svg')}}">
+        Alexis Rojas
+    </a> 
 </footer>
+
 
 <script src="{{asset('js/menu.js')}}"></script>
 </body>
