@@ -1,3 +1,4 @@
+
 <div class="bg-white rounded-[35px] shadow-lg flex mb-6 overflow-hidden">
     <img width="130" src="{{asset("img/activities/$category->image")}}" alt="Categorie" class="rounded-t-lg">
     <div class="p-6">

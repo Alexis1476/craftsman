@@ -24,6 +24,18 @@ class AdminController extends Controller
         return View('admin.profil');
     }
 
+    public function searchUser()
+    {
+        $user = User::where('anonymousID', \request('id'))->first();
+
+        if (!$user) {
+            return back()->withErrors([
+                'id' => 'L\'utilisateur n\'existe pas'
+            ]);
+        }
+        return redirect(route('admin.showUser', ['id' => $user->anonymousID]));
+    }
+
     public function update()
     {
         \request()->validate([
@@ -52,7 +64,7 @@ class AdminController extends Controller
         $user = User::where('anonymousID', \request('id'))->firstOrFail();
         $userActivities = $user->activities()->where('finished', 0)->get();
         $score = $user->score();
-        return View('user.activities', ['user' => $user, 'score' => $score, 'activities' => $userActivities]);
+        return View('user.activities', ['user' => $user, 'activities' => $userActivities]);
     }
 
     //

@@ -81,7 +81,7 @@ class UserController extends Controller
         }
 
         // Génération de l'ID unique
-        $hashids = new Hashids(\request('email'));
+        $hashids = new Hashids(\request('email'), 0, 'QWERTZUIOPASDFGHJKLYXCVBNM0123456789');
         $id = $hashids->encode(1, 2);
 
         // Insertion dans la base de données

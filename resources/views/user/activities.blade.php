@@ -3,21 +3,12 @@
 @section('title', "Profil $user->anonymousID")
 
 @section('content')
-    @if(isset($score))
-        {{$score}}
-    @endif
-    <h3>{{$user->anonymousID}}</h3>
-    <p>{{$user->email}}</p>
-    @foreach($activities as $activity)
-        <h2>{{$activity->name}}</h2>
-        <h4>Description :</h4>
-        <p>{!!$activity->description!!}</p>
-        <h4>Pourquoi :</h4>
-        <p>{!!$activity->why!!}</p>
-        <span><strong>Points : </strong>{{$activity->points}}</span>
-        <p>Laboratoire : {{$activity->laboratory}}</p>
-        @auth('webadmin')
-            <a href="{{route('admin.validateActivity',['user' => $user->anonymousID, 'activity' => $activity->id])}}">Valider</a>
-        @endauth
-    @endforeach
+    <h1 class="font-bold mb-2 text-3xl text-[#371877]">{{$user->anonymousID}}</h1>
+    <p class="italic">{{$user->email}}</p>
+    <p><strong>Total de points :</strong> {{$user->score()}}</p>
+    <div class="flex flex-wrap gap-5 justify-center my-6">
+        @foreach($activities as $activity)
+            @include('components.activity-card', ['activity' => $activity, 'imgCategory' => $activity->category->image])
+        @endforeach
+    </div>
 @endsection

@@ -62,6 +62,7 @@ Route::name('admin.')->group(function () {
             Route::post('updateActivity', [ActivityController::class, 'update'])->name('updateActivity');
             Route::get('users', [UserController::class, 'index'])->name('users');
             Route::get('scores', [ScoreController::class, 'show'])->name('scores');
+            Route::post('searchUser','searchUser')->name('searchUser');
         });
     });
 });
@@ -69,4 +70,11 @@ Route::name('admin.')->group(function () {
 /* Generer les migrations lors du deploiement*/
 /*Route::get('migrate', function () {
     $exitCode = Artisan::call('migrate:fresh --seed --force');
+});*/
+
+/* Optimiser l'application*/
+/*Route::get('migrate', function () {
+    $exitCode = Artisan::call('config:cache');
+    $exitCode = Artisan::call('route:cache');
+    $exitCode = Artisan::call('view:cache');
 });*/

@@ -5,23 +5,17 @@
 @section('content')
     @if(isset($category))
         <h1 class="text-3xl font-bold mb-8">{{$category->name}}</h1>
-        <img class="mb-8" src="{{asset("img/activities/$category->image")}}" alt="{{$category->name}}">
+        <img class="mb-8" src="{{asset("img/categories/$category->image")}}" alt="{{$category->name}}">
     @else
         <h1 class="text-3xl font-bold mb-8">Activités</h1>
     @endif
-    @if($activities)
+    @if(count($activities) > 0)
         <table class="text-sm text-left text-gray-500 table-auto max-w-[90%] mx-auto">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
-                <th class="p-3">
-                    Nom
-                </th>
-                <th class="p-3">
-                    Laboratoire
-                </th>
-                <th class="p-3">
-                    Points
-                </th>
+                <th class="p-3"> Nom</th>
+                <th class="p-3"> Laboratoire</th>
+                <th class="p-3"> Points</th>
             </tr>
             </thead>
             <tbody>
@@ -31,15 +25,13 @@
                         <a href="{{route('activity',['id' => $activity->id])}}"
                            class="font-medium text-blue-600 hover:underline">{{$activity->name}}</a>
                     </th>
-                    <td class="p-3">
-                        {{$activity->laboratory}}
-                    </td>
-                    <td class="p-3">
-                        {{$activity->points}}
-                    </td>
+                    <td class="p-3">{{$activity->laboratory}}</td>
+                    <td class="p-3">{{$activity->points}}</td>
                 </tr>
             @endforeach
             </tbody>
         </table>
+    @else
+        <h3>Il n'y a pas d'activités actuellement</h3>
     @endif
 @endsection
