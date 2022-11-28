@@ -3,7 +3,7 @@
 @section('title', 'ETML - Craftsman')
 
 @section('custom-header')
-    <div class="bg">
+    <div class="bg flex flex-col items-center">
         <h1 class="text-3xl font-bold">ETML Portes Ouvertes</h1>
         <p>Faites des activités et gagnez des points!</p>
     </div>
