@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
     <link rel="manifest" href="{{asset('site.webmanifest')}}">
+    <link rel="manifest" href="{{asset('resources/css/style.css')}}">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="flex flex-col h-full">
@@ -26,7 +27,7 @@
                     </svg>
                 </button>
                 <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-                    <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
+                    <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-base md:font-medium md:border-0 md:bg-white">
                         <li>@include('components.nav-item', ['route' => route('home'), 'text' => 'Accueil'])</li>
                         <li>@include('components.nav-item', ['route' => route('categories'), 'text' => 'Catégories'])</li>
                         <li>@include('components.nav-item', ['route' => route('activities'), 'text' => 'Cartes'])</li>
@@ -78,7 +79,7 @@
     </div>
 </header>
 @yield('custom-header')
-<main class="w-11/12 mx-auto flex flex-col items-center grow">
+<main class="w-full mx-auto flex flex-col items-center grow">
     @yield('content')
 </main>
 <footer class="p-4 bg-white rounded-lg shadow md:flex items-center text-center md:justify-between md:p-6 md:flex-col">

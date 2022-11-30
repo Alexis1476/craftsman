@@ -3,20 +3,23 @@
 @section('title', 'ETML - Craftsman')
 
 @section('custom-header')
-    <div class="bg flex flex-col items-center">
-        <h1 class="text-3xl font-bold">ETML Portes Ouvertes</h1>
-        <p>Faites des activités et gagnez des points!</p>
-    </div>
+    
 @endsection
 
 @section('content')
-    <h2 class="text-2xl font-bold">Craftsman Challenge</h2>
+
+    <div class="justify-center flex flex-col items-center bg-[#371877] w-full h-64 text-white">
+        <h1 class="text-3xl font-bold">ETML Portes Ouvertes</h1>
+        <p>Faites des activités et gagnez des points!</p>
+        <h2 class="text-2xl font-bold">Craftsman Challenge</h2>
+    </div>
+
     {{--Form to sign up--}}
     @auth('webadmin')
     @elseauth('web')
     @else
         <form class="w-full max-w-lg" action="{{route('user.signUp')}}" method="post">
-            <h3 class="text-xl font-semibold my-4 text-center">S'enregistrer</h3>
+            <h3 class="text-2xl font-semibold my-4 text-center">S'enregistrer</h3>
             {{csrf_field()}}
             <div class="flex flex-wrap -mx-3 mb-2">
                 @include('components.form-item',['id' => 'firstName', 'label'=> 'Prénom', 'type' => 'text'])
