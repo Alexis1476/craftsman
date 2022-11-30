@@ -13,7 +13,7 @@
         <div class="container flex flex-wrap items-center justify-between mx-auto">
             <div class="container flex flex-wrap items-center justify-between mx-auto">
                 <a href="{{route('home')}}" class="flex items-center">
-                    <img src="{{asset('img/logo.png')}}" class="h-14 ml-3" alt="ETML logo"/>
+                    <img src="{{asset('img/logo.svg')}}" class="h-12 ml-3" alt="ETML logo"/>
                 </a>
                 <button data-collapse-toggle="navbar-default" type="button"
                         class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
