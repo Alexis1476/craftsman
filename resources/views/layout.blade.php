@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
+    <link rel="manifest" href="{{asset('site.webmanifest')}}">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="flex flex-col h-full">
@@ -12,7 +13,7 @@
         <div class="container flex flex-wrap items-center justify-between mx-auto">
             <div class="container flex flex-wrap items-center justify-between mx-auto">
                 <a href="{{route('home')}}" class="flex items-center">
-                    <img src="{{asset('img/logo.png')}}" class="h-4 sm:h-4 ml-3" alt="ETML logo"/>
+                    <img src="{{asset('img/logo.png')}}" class="h-14 ml-3" alt="ETML logo"/>
                 </a>
                 <button data-collapse-toggle="navbar-default" type="button"
                         class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
@@ -37,10 +38,10 @@
                             @endif
                             <li>@include('components.nav-item', ['route' => route('admin.scores'), 'text' => 'Score'])</li>
                             <li>@include('components.nav-item', ['route' => route('admin.users'), 'text' => 'Visiteurs'])</li>
-                            <li>@include('components.nav-item', ['route' => route('admin.logout'), 'text' => 'Se deconnecter'])</li>
+                            <li>@include('components.nav-item', ['route' => route('admin.logout'), 'text' => 'Se déconnecter'])</li>
                         @elseauth('web')
                             <li>@include('components.nav-item', ['route' => route('user.profil'), 'text' => 'Mes activités'])</li>
-                            <li>@include('components.nav-item', ['route' => route('user.logout'), 'text' => 'Se deconnecter'])</li>
+                            <li>@include('components.nav-item', ['route' => route('user.logout'), 'text' => 'Se déconnecter'])</li>
                         @else
                             <li>@include('components.nav-item', ['route' => route('login'), 'text' => 'Se connecter'])</li>
                         @endauth
@@ -82,7 +83,8 @@
 </main>
 <footer class="p-4 bg-white rounded-lg shadow md:flex items-center text-center md:justify-between md:p-6 md:flex-col">
     <span class="text-sm text-gray-500">© 2022 ETML. Tous droits réservés.</span>
-    <a href="https://github.com/Alexis1476" target="_blank" class="flex items-center justify-center hover:text-violet-700">
+    <a href="https://github.com/Alexis1476" target="_blank"
+       class="flex items-center justify-center hover:text-violet-700">
         <img class="w-4 h-4 mr-2" src="{{asset('img/icons/github.svg')}}" alt="Github">
         Alexis Rojas
     </a>
