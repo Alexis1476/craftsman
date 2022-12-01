@@ -47,6 +47,8 @@ Route::name('user.')->group(function () {
     });
 });
 
+
+
 /* Routes des admins */
 Route::name('admin.')->group(function () {
     Route::controller(AdminController::class)->group(function () {
@@ -62,7 +64,8 @@ Route::name('admin.')->group(function () {
             Route::post('updateActivity', [ActivityController::class, 'update'])->name('updateActivity');
             Route::get('users', [UserController::class, 'index'])->name('users');
             Route::get('scores', [ScoreController::class, 'show'])->name('scores');
-            Route::post('searchUser','searchUser')->name('searchUser');
+            Route::post('searchUser', 'searchUser')->name('searchUser');
+            Route::delete('activity/{id}', [ActivityController::class, 'destroy'])->name('activityDelete');
         });
     });
 });
