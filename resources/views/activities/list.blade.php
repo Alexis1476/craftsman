@@ -16,6 +16,11 @@
                 <th class="p-3"> Nom</th>
                 <th class="p-3"> Laboratoire</th>
                 <th class="p-3"> Points</th>
+                @isset(auth('webadmin')->user()->right)
+                    @if(auth('webadmin')->user()->right === 1)
+                        <th class="p-3">Action</th>
+                    @endif
+                @endisset
             </tr>
             </thead>
             <tbody>
@@ -27,6 +32,15 @@
                     </th>
                     <td class="p-3">{{$activity->laboratory}}</td>
                     <td class="p-3">{{$activity->points}}</td>
+                    @isset(auth('webadmin')->user()->right)
+                        @if(auth('webadmin')->user()->right === 1)
+                            <td class="p-3">
+                                <a href="" class="flex justify-center items-center">
+                                    <img class="h-4" src="{{asset('img/icons/trash.svg')}}" alt="">
+                                </a>
+                            </td>
+                        @endif
+                    @endisset
                 </tr>
             @endforeach
             </tbody>
