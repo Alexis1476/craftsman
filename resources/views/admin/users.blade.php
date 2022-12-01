@@ -20,6 +20,11 @@
                 <th class="p-3">Nom</th>
                 <th class="p-3">Email</th>
                 <th class="p-3">Points</th>
+                @isset(auth('webadmin')->user()->right)
+                    @if(auth('webadmin')->user()->right === 1)
+                        <th class="p-3">Action</th>
+                    @endif
+                @endisset
             </tr>
             </thead>
             <tbody>
@@ -33,6 +38,20 @@
                     <td class="p-3">{{$user->lastName}}</td>
                     <td class="p-3">{{$user->email}}</td>
                     <td class="p-3">{{$user->score()}}</td>
+                    @isset(auth('webadmin')->user()->right)
+                        @if(auth('webadmin')->user()->right === 1)
+                            <td class="p-3">
+                                <form class="flex justify-center items-center"
+                                      action="{{route('admin.userDelete', ['id' => $user->id])}}" method="post">
+                                    {{csrf_field()}}
+                                    @method('DELETE')
+                                    <button title="delete" type="submit"><img class="h-4"
+                                                                              src="{{asset('img/icons/trash.svg')}}"
+                                                                              alt=""></button>
+                                </form>
+                            </td>
+                        @endif
+                    @endisset
                 </tr>
             @endforeach
             </tbody>
