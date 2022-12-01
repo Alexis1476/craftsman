@@ -35,9 +35,11 @@
                     @isset(auth('webadmin')->user()->right)
                         @if(auth('webadmin')->user()->right === 1)
                             <td class="p-3">
-                                <a href="" class="flex justify-center items-center">
-                                    <img class="h-4" src="{{asset('img/icons/trash.svg')}}" alt="">
-                                </a>
+                                <form class="flex justify-center items-center" action="{{route('admin.activityDelete', ['id' => $activity->id])}}" method="post">
+                                    {{csrf_field()}}
+                                    @method('DELETE')
+                                    <button title="delete" type="submit"><img class="h-4" src="{{asset('img/icons/trash.svg')}}" alt=""></button>
+                                </form>
                             </td>
                         @endif
                     @endisset
