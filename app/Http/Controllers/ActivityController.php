@@ -44,7 +44,7 @@ class ActivityController extends Controller
             'description' => ['required'],
             'laboratory' => ['required'],
             'why' => ['required'],
-            'points' => ['required', 'numeric'],
+            'points' => ['required', 'numeric', 'gt:0'],
         ]);
 
         Activity::create([
