@@ -41,7 +41,7 @@
                     @isset(auth('webadmin')->user()->right)
                         @if(auth('webadmin')->user()->right === 1)
                             <td class="p-3">
-                                <form class="flex justify-center items-center"
+                                <form class="flex justify-center items-center" onsubmit="return confirm('Voulez-vous vraiment supprimer cet utilisateur?');"
                                       action="{{route('admin.userDelete', ['id' => $user->id])}}" method="post">
                                     {{csrf_field()}}
                                     @method('DELETE')
