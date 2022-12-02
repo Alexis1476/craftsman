@@ -46,11 +46,14 @@ class User extends Authenticatable
     public function newActivities()
     {
         define('NB_ACTIVITIES', 5);
+        // Nombre d'activités disponibles
+        $currentActivities = count($this->activities()->get());
 
         // Si nombre d'activités finies n'est pas un multiple de 5
         $finishedActivities = count($this->activities()->where('finished', 1)->get());
-        if ($finishedActivities % NB_ACTIVITIES != 0)
+        if ($currentActivities !== $finishedActivities) {
             return null;
+        }
 
         // Visiteur qui fini l'activité
         $visitorActivities = $this->activities->pluck('id'); // Pluck: Get seule les ids

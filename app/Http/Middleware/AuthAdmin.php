@@ -25,7 +25,7 @@ class AuthAdmin
         if ($admin->right === 0) {
             /* Si l'utilisateur est un apprenti, il ne peut pas modifier
             son mot de passe ou ajouter une activité*/
-            if ($request->route()->named('admin.modify', 'admin.addActivity')) {
+            if ($request->route()->named('admin.modify', 'admin.addActivity', 'admin.activityDelete', 'admin.userDelete')) {
                 return redirect(route('home'));
             }
         }

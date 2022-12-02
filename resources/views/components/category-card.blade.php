@@ -1,4 +1,5 @@
-<div class="bg-white rounded-[35px] shadow-lg flex mb-4 overflow-hidden">
+
+<div class="bg-white rounded-[35px] shadow-lg flex mb-6 overflow-hidden md:ml-14 xl:ml-28">
     <img width="130" src="{{asset("img/categories/$category->image")}}" alt="Categorie" class="rounded-t-lg">
     <div class="p-6">
         <h2 class="font-bold mb-2 text-2xl text-[#371877]">{{$category->name}}

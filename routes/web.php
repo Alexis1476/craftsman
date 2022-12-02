@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\Auth;
@@ -24,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home')->name('home');
 Route::view('login', 'login')->name('login')->middleware(Auth::class);
+Route::post('login', [LoginController::class, 'login'])->name('loginPost')->middleware(Auth::class);
 
 Route::controller(CategoryController::class)->group(function () {
     Route::get('categories', 'index')->name('categories');
@@ -38,7 +40,6 @@ Route::controller(ActivityController::class)->group(function () {
 /* Routes du visiteur*/
 Route::name('user.')->group(function () {
     Route::controller(UserController::class)->group(function () {
-        Route::post('user/login', 'login')->name('login');
         Route::post('user/signUp', 'create')->name('signUp');
         Route::middleware(AuthUser::class)->group(function () {
             Route::get('user/logout', 'logout')->name('logout');
@@ -47,10 +48,10 @@ Route::name('user.')->group(function () {
     });
 });
 
+
 /* Routes des admins */
 Route::name('admin.')->group(function () {
     Route::controller(AdminController::class)->group(function () {
-        Route::post('admin/login', 'login')->name('login');
         Route::middleware(AuthAdmin::class)->group(function () {
             Route::get('admin/logout', 'logout')->name('logout');
             Route::get('user/{id}', 'showUser')->name('showUser');
@@ -62,7 +63,9 @@ Route::name('admin.')->group(function () {
             Route::post('updateActivity', [ActivityController::class, 'update'])->name('updateActivity');
             Route::get('users', [UserController::class, 'index'])->name('users');
             Route::get('scores', [ScoreController::class, 'show'])->name('scores');
-            Route::post('searchUser','searchUser')->name('searchUser');
+            Route::post('searchUser', 'searchUser')->name('searchUser');
+            Route::delete('activity/{id}', [ActivityController::class, 'destroy'])->name('activityDelete');
+            Route::delete('user/{id}', [UserController::class, 'destroy'])->name('userDelete');
         });
     });
 });
@@ -70,4 +73,11 @@ Route::name('admin.')->group(function () {
 /* Generer les migrations lors du deploiement*/
 /*Route::get('migrate', function () {
     $exitCode = Artisan::call('migrate:fresh --seed --force');
+});*/
+
+/* Optimiser l'application*/
+/*Route::get('migrate', function () {
+    $exitCode = Artisan::call('config:cache');
+    $exitCode = Artisan::call('route:cache');
+    $exitCode = Artisan::call('view:cache');
 });*/

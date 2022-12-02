@@ -13,8 +13,8 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('user_activities', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('activity_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('activity_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->boolean('finished')->default(0);
             $table->timestamps();
             $table->unique(['user_id', 'activity_id']);
