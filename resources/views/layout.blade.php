@@ -84,11 +84,17 @@
 </main>
 <footer class="p-4 bg-white rounded-lg shadow md:flex items-center text-center md:justify-between md:p-6 md:flex-col">
     <span class="text-sm text-gray-500">© 2022 ETML. Tous droits réservés.</span>
-    <a href="https://github.com/Alexis1476" target="_blank"
-       class="flex items-center justify-center hover:text-violet-700">
-        <img class="w-4 h-4 mr-2" src="{{asset('img/icons/github.svg')}}" alt="Github">
-        Alexis Rojas
-    </a>
+    <div class="flex space-x-2">
+        <a href="https://github.com/Alexis1476" target="_blank"
+           class="flex items-center justify-center hover:text-violet-700">
+            <img class="w-4 h-4 mr-2" src="{{asset('img/icons/github.svg')}}" alt="Github">
+            Alexis Rojas
+        </a>
+        <a href="https://github.com/KendySong" target="_blank"
+           class="flex items-center justify-center hover:text-violet-700">
+            Kendy Song
+        </a>
+    </div>
 </footer>
 <script src="{{asset('js/menu.js')}}"></script>
 </body>
