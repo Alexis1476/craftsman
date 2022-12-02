@@ -4,6 +4,7 @@
 
 @section('content')
     {{--Form user login--}}
+    <div class="w-11/12 mx-auto">
     <h1 class="text-3xl font-bold mb-8">Connexion</h1>
     <div class="flex flex-col my-4">
         <form class="w-full max-w-lg" action="{{route('loginPost')}}" method="post">
