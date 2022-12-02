@@ -3,7 +3,7 @@
 @section('title', 'ETML - Craftsman')
 
 @section('custom-header')
-    
+
 @endsection
 
 @section('content')
@@ -19,7 +19,7 @@
     @elseauth('web')
     @else
     <div class="w-11/12 mx-auto">
-        <form class="w-full max-w-lg" action="{{route('user.signUp')}}" method="post">
+        <form class="mx-auto max-w-lg" action="{{route('user.signUp')}}" method="post">
             <h3 class="text-2xl font-semibold my-4 text-center">S'enregistrer</h3>
             {{csrf_field()}}
             <div class="flex flex-wrap -mx-3 mb-2">
@@ -39,6 +39,6 @@
             </button>
         </form>
     </div>
-        
+
     @endguest
 @endsection
