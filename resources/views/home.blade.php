@@ -18,6 +18,7 @@
     @auth('webadmin')
     @elseauth('web')
     @else
+    <div class="w-11/12 mx-auto">
         <form class="w-full max-w-lg" action="{{route('user.signUp')}}" method="post">
             <h3 class="text-2xl font-semibold my-4 text-center">S'enregistrer</h3>
             {{csrf_field()}}
@@ -37,5 +38,7 @@
                 S'enregistrer
             </button>
         </form>
+    </div>
+        
     @endguest
 @endsection

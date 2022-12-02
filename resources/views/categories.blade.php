@@ -3,7 +3,8 @@
 @section('title', 'Categories')
 
 @section('content')
-    <h1 class="text-3xl font-bold mb-8">Categories</h1>
+<div class="w-11/12 mx-auto flex flex-col items-center">
+    <h1 class="text-3xl font-bold mb-8 mt-4">Categories</h1>
     <div class="w-full my-4 flex justify-center space-x-4">
         @auth('webadmin')
             @if(auth('webadmin')->user()->right === 1)
@@ -17,4 +18,5 @@
             @include('components.category-card', ['category' => $category])
         @endforeach
     </div>
+</div>
 @endsection
