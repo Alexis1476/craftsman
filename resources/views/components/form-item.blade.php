@@ -3,7 +3,7 @@
     <input
         class="border-solid border-2 border-gray-400 @error($id) border-red-500 @enderror appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
         name="{{$id}}" id="{{$id}}" type="{{$type}}"
-        value="{{isset($value) ? $value : old($id)}}" required>
+        value="{{isset($value) ? $value : old($id)}}" placeholder="{{isset($placeholder) ? $placeholder : ''}}" required>
     @if($errors->has($id))
         <p class="text-red-500 text-xs italic">{{$errors->first($id)}}</p>
     @endif
