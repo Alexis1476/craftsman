@@ -66,28 +66,4 @@ class AdminController extends Controller
         $score = $user->score();
         return View('user.activities', ['user' => $user, 'activities' => $userActivities]);
     }
-
-    //
-    function login()
-    {
-        \request()->validate([
-            'login' => ['required'],
-            'password_admin' => ['required']
-        ]);
-
-        $result = auth()->guard(self::GUARD)->attempt([
-            'login' => \request('login'),
-            'password' => \request('password_admin')
-        ]);
-
-        // redirection
-        if ($result) {
-            return redirect(route('home'));
-        }
-
-        // Retourne page précedente avec les données écris dans le formulaire + erreurs
-        return back()->withInput()->withErrors([
-            'login' => 'Your credentials are incorrect'
-        ]);
-    }
 }

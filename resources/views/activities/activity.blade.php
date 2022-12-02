@@ -7,7 +7,7 @@
     @auth('webadmin')
         {{--Si l'admin est un prof--}}
         @if(auth('webadmin')->user()->right === 1)
-            @include('components.activity-form',['route' => route('admin.addActivity'), 'categories' => $categories, 'activity' => $activity])
+            @include('components.activity-form',['route' => route('admin.updateActivity'), 'categories' => $categories, 'activity' => $activity])
         @else
             <div class="flex flex-col space-y-4 border-red border-2 rounded-md p-8 shadow-md mt-8 mr-4 ml-4">
                 @php $img = $activity->category->image; @endphp

@@ -44,7 +44,7 @@ class ActivityController extends Controller
             'description' => ['required'],
             'laboratory' => ['required'],
             'why' => ['required'],
-            'points' => ['required', 'numeric'],
+            'points' => ['required', 'numeric', 'gt:0'],
         ]);
 
         Activity::create([
@@ -89,6 +89,15 @@ class ActivityController extends Controller
     {
         $activity = Activity::find(request('id'));
 
+        \request()->validate([
+            'category' => ['required'],
+            'name' => ['required', 'max:50'],
+            'description' => ['required'],
+            'laboratory' => ['required'],
+            'why' => ['required'],
+            'points' => ['required', 'numeric', 'gt:0'],
+        ]);
+
         $activity->update([
             'name' => request('name'),
             'description' => request('description'),
@@ -110,5 +119,7 @@ class ActivityController extends Controller
     public function destroy(Activity $activity)
     {
         //
+        Activity::destroy([request('id')]);
+        return back();
     }
 }
