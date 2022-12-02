@@ -3,7 +3,7 @@
 @section('title', 'Visiteurs')
 
 @section('content')
-    <h1 class="text-3xl font-bold mb-8">Visiteurs</h1>
+    <h1 class="text-3xl font-bold mb-8 mt-8">Visiteurs</h1>
     <form class="flex items-center" action="{{route('admin.searchUser')}}" method="post">
         {{csrf_field()}}
         @include('components.form-item', ['id' => 'id', 'label' => 'User ID', 'type' => 'text'])
@@ -12,7 +12,7 @@
         </button>
     </form>
     @if(count($users) > 0)
-        <table class="text-sm text-left text-gray-500 table-auto max-w-[90%] mx-auto">
+        <table class="text-sm text-left text-gray-500 table-auto max-w-[90%] mx-auto mt-4">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
                 <th class="p-3">ID</th>
