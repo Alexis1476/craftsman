@@ -31,29 +31,6 @@ class UserController extends Controller
         return redirect(route('home'));
     }
 
-    public function login()
-    {
-        \request()->validate([
-            'email' => ['required'],
-            'password' => ['required']
-        ]);
-
-        $result = auth()->guard(self::GUARD)->attempt([
-            'email' => \request('email'),
-            'password' => \request('password') // password -> convention laravel
-        ]);
-
-        // redirection
-        if ($result) {
-            return redirect(route('user.profil'));
-        }
-
-        // Retourne page précedente avec les données écris dans le formulaire + erreurs
-        return back()->withInput()->withErrors([
-            'email' => 'Your credentials are incorrect'
-        ]);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
