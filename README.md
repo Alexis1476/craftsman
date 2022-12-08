@@ -54,13 +54,13 @@ PHP 8.0.25 et Composer
    php artisan key:generate
    ```
 6. Réferencer les informations de la base de données dans le fichier .env.
-    ```json
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=db_craftsman
-    DB_USERNAME=root    
-    DB_PASSWORD=root
+    ```sh
+    DB_CONNECTION=
+    DB_HOST=
+    DB_PORT=
+    DB_DATABASE=
+    DB_USERNAME=    
+    DB_PASSWORD=
     ```
 7. Lancer les migrations
     ```sh
