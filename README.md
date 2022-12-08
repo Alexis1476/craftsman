@@ -10,7 +10,7 @@
 <!-- ABOUT THE PROJECT -->
 ## A propos du projet
 
-Cette application permet de lancer des défis artisanaux en rélation avec l'informatique.
+Cette application permet de lancer des défis artisanaux en relation avec l'informatique.
 
 ### Technologies
 
