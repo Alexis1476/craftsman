@@ -17,14 +17,14 @@ class AdminSeeder extends Seeder
     public function run()
     {
         Admin::factory()->createMany([[
-            // Compte apprenti
-            'login' => 'apprINF',
-            'password' => Hash::make('$ETML-PO2022'),
+            // Compte admin 0
+            'login' => 'user',
+            'password' => Hash::make('123456789'),
             'right' => 0
         ], [
-            // Compte enseignant
-            'login' => 'profINF',
-            'password' => Hash::make('$ETML-PO2022'),
+            // Compte admin 1
+            'login' => 'admin',
+            'password' => Hash::make('123456789'),
             'right' => 1
         ]]);
     }
