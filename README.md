@@ -29,7 +29,7 @@ Cette application permet de lancer des défis artisanaux en rélation avec l'inf
 ### Systèmes d'authentification
 1. User: Fait les activités
 2. Admin: Valide les activités faites par les utilisateurs 
-   - Si right = 1 il peut modofier et ajouter des activités
+   - Si right = 1 il peut modifier et ajouter des activités
 
 ## Prérequis
 
