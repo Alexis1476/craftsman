@@ -70,7 +70,7 @@ Route::name('admin.')->group(function () {
             Route::get('admin/logout', 'logout')->name('logout');
             Route::get('user/{id}', 'showUser')->name('showUser');
             Route::get('validateActivity/{user}/{activity}', 'validateActivity')->name('validateActivity');
-            Route::get('admin/profil', 'profil')->name('profil');
+            Route::get('admin/profil', 'show')->name('show');
             Route::post('admin/modify', 'update')->name('update');
             Route::get('users', [UserController::class, 'index'])->name('users');
             Route::get('scores', [ScoreController::class, 'show'])->name('scores');

@@ -33,7 +33,7 @@
                         <li>@include('components.nav-item', ['route' => route('activities.index'), 'text' => 'Cartes'])</li>
                         @auth('webadmin')
                             @if(auth('webadmin')->user()->right === 1)
-                                <li>@include('components.nav-item', ['route' => route('admin.profil'), 'text' => auth('webadmin')->user()->login])</li>
+                                <li>@include('components.nav-item', ['route' => route('admin.show'), 'text' => auth('webadmin')->user()->login])</li>
                             @else
                                 <li>@include('components.nav-item', ['route' => '#', 'text' => auth('webadmin')->user()->login])</li>
                             @endif
@@ -60,7 +60,7 @@
                     <li>@include('components.side-nav-item', ['route' => route('activities.index'), 'text' => 'Cartes', 'icon' => asset('img/icons/activities.svg')])</li>
                     @auth('webadmin')
                         @if(auth('webadmin')->user()->right === 1)
-                            @include('components.side-nav-item', ['route' => route('admin.profil'), 'text' => auth('webadmin')->user()->login, 'icon' => asset('img/icons/login.svg')])
+                            @include('components.side-nav-item', ['route' => route('admin.show'), 'text' => auth('webadmin')->user()->login, 'icon' => asset('img/icons/login.svg')])
                         @else
                             @include('components.side-nav-item', ['route' => '#', 'text' => auth('webadmin')->user()->login, 'icon' => asset('img/icons/login.svg')])
                         @endif
