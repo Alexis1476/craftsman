@@ -43,24 +43,13 @@ Route::name('categories.')->group(function () {
     Route::controller(CategoryController::class)->group(function () {
         Route::get('categories', 'index')->name('index');
         Route::get('categories/{id}', 'show')->name('show');
-        // Routes pour les admins
-        /*Route::middleware(AuthAdmin::class)->group(function () {
-            Route::get('categories/create', 'create')->name('create');
-            Route::post('categories/{id}', 'store')->name('store');
-            Route::delete('categories/{id}', 'destroy')->name('destroy');
-            Route::put('categories{id}', 'update')->name('update');
-        });*/
+        /*TODO : CRUD pour les categories */
     });
 });
 
 Route::view('/', 'home')->name('home');
 Route::view('login', 'login')->name('login')->middleware(Auth::class);
 Route::post('login', [LoginController::class, 'login'])->name('loginPost')->middleware(Auth::class);
-
-/*Route::controller(CategoryController::class)->group(function () {
-    Route::get('categories', 'index')->name('categories');
-    Route::get('categories/{id}', 'show')->name('category');
-});*/
 
 /* Routes du visiteur*/
 Route::name('user.')->group(function () {
