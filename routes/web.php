@@ -54,7 +54,7 @@ Route::post('login', [LoginController::class, 'login'])->name('loginPost')->midd
 /* Routes du visiteur*/
 Route::name('user.')->group(function () {
     Route::controller(UserController::class)->group(function () {
-        Route::post('user/signUp', 'create')->name('signUp');
+        Route::post('user/signUp', 'store')->name('store');
         Route::middleware(AuthUser::class)->group(function () {
             Route::get('user/logout', 'logout')->name('logout');
             Route::get('user/profil', 'show')->name('profil');
