@@ -1,5 +1,6 @@
 <form class="w-full max-w-lg" action="{{$route}}" method="post">
     {{csrf_field()}}
+    @method('PUT')
     @isset($activity)
         @include('components.form-item', ['id' => 'id', 'label' => '', 'type' => 'hidden', 'value' => $activity->id])
     @endisset

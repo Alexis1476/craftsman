@@ -27,7 +27,7 @@
             @foreach($activities as $activity)
                 <tr class="hover:bg-gray-50">
                     <th class="p-3 font-medium text-gray-900">
-                        <a href="{{route('activity',['id' => $activity->id])}}"
+                        <a href="{{route('activities.show',['id' => $activity->id])}}"
                            class="font-medium text-blue-600 hover:underline">{{$activity->name}}</a>
                     </th>
                     <td class="p-3">{{$activity->laboratory}}</td>
@@ -37,7 +37,7 @@
                             <td class="p-3">
                                 <form class="flex justify-center items-center"
                                       onsubmit="return confirm('Voulez-vous vraiment supprimer cette activité?');"
-                                      action="{{route('admin.activityDelete', ['id' => $activity->id])}}" method="post">
+                                      action="{{route('activities.destroy', ['id' => $activity->id])}}" method="post">
                                     {{csrf_field()}}
                                     @method('DELETE')
                                     <button title="delete" type="submit">

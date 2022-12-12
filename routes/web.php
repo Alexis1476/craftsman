@@ -48,7 +48,19 @@ Route::name('user.')->group(function () {
     });
 });
 
-
+Route::name('activities.')->group(function () {
+    Route::controller(ActivityController::class)->group(function () {
+        Route::get('activities', 'index')->name('index');
+        Route::get('activities/{id}', 'show')->name('show');
+        // Routes pour les admins
+        Route::middleware(AuthAdmin::class)->group(function () {
+            Route::get('activities/create', 'create')->name('create');
+            Route::post('activities/{id}', 'store')->name('store');
+            Route::delete('activities/{id}', 'destroy')->name('destroy');
+            Route::put('activities{id}', 'update')->name('update');
+        });
+    });
+});
 /* Routes des admins */
 Route::name('admin.')->group(function () {
     Route::controller(AdminController::class)->group(function () {
@@ -58,13 +70,9 @@ Route::name('admin.')->group(function () {
             Route::get('validateActivity/{user}/{activity}', 'validateActivity')->name('validateActivity');
             Route::get('admin/profil', 'profil')->name('profil');
             Route::post('admin/modify', 'update')->name('update');
-            Route::get('addActivity', [ActivityController::class, 'create'])->name('formAddActivity');
-            Route::post('addActivity', [ActivityController::class, 'store'])->name('addActivity');
-            Route::post('updateActivity', [ActivityController::class, 'update'])->name('updateActivity');
             Route::get('users', [UserController::class, 'index'])->name('users');
             Route::get('scores', [ScoreController::class, 'show'])->name('scores');
             Route::post('searchUser', 'searchUser')->name('searchUser');
-            Route::delete('activity/{id}', [ActivityController::class, 'destroy'])->name('activityDelete');
             Route::delete('user/{id}', [UserController::class, 'destroy'])->name('userDelete');
         });
     });
