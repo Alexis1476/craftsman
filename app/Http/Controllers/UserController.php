@@ -84,7 +84,7 @@ class UserController extends Controller
      * Affiche le profil de l'utilsiateur connecté
      * @return Application|Factory|View
      */
-    public function show()
+    public function show(): View|Factory|Application
     {
         $user = auth(self::GUARD)->user();
         $activities = $user->activities()->where('finished', 0)->get();
