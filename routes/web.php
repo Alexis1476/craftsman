@@ -27,7 +27,6 @@ use Illuminate\Support\Facades\Route;
 Route::name('activities.')->group(function () {
     Route::controller(ActivityController::class)->group(function () {
         Route::get('activities', 'index')->name('index');
-        Route::get('activities/{id}', 'show')->name('show');
         // Routes pour les admins
         Route::middleware(AuthAdmin::class)->group(function () {
             Route::get('activities/create', 'create')->name('create');
@@ -35,6 +34,7 @@ Route::name('activities.')->group(function () {
             Route::delete('activities/{id}', 'destroy')->name('destroy');
             Route::put('activities{id}', 'update')->name('update');
         });
+        Route::get('activities/{id}', 'show')->name('show');
     });
 });
 
