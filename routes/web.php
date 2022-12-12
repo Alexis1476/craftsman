@@ -73,7 +73,7 @@ Route::name('admin.')->group(function () {
             Route::get('admin/profil', 'show')->name('show');
             Route::post('admin/modify', 'update')->name('update');
             Route::get('users', [UserController::class, 'index'])->name('users');
-            Route::get('scores', [ScoreController::class, 'show'])->name('scores');
+            Route::get('scores', [ScoreController::class, 'index'])->name('scores');
             Route::post('searchUser', 'searchUser')->name('searchUser');
             Route::delete('user/{id}', [UserController::class, 'destroy'])->name('userDelete');
         });
