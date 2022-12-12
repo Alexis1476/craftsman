@@ -17,7 +17,7 @@ class ActivityController extends Controller
      * Affiche la liste des activités
      * @return Application|Factory|View
      */
-    public function index()
+    public function index(): View|Factory|Application
     {
         return View('activities.index', ['activities' => Activity::orderBy('name')->get()]);
     }
@@ -26,7 +26,7 @@ class ActivityController extends Controller
      * Affiche le formulaire pour ajouter une nouvelle activité
      * @return Application|Factory|View
      */
-    public function create()
+    public function create(): View|Factory|Application
     {
         $categories = Category::all();
 
@@ -37,7 +37,7 @@ class ActivityController extends Controller
      * Enregistre une nouvelle activité dans la base de données
      * @return Application|RedirectResponse|Redirector
      */
-    public function store()
+    public function store(): Redirector|RedirectResponse|Application
     {
         request()->validate([
             'category' => ['required'],
@@ -65,7 +65,7 @@ class ActivityController extends Controller
      * @param $id
      * @return Application|Factory|View
      */
-    public function show($id)
+    public function show($id): View|Factory|Application
     {
         $categories = Category::all();
         $activity = Activity::find($id);
@@ -77,7 +77,7 @@ class ActivityController extends Controller
      * @param $id
      * @return RedirectResponse
      */
-    public function update($id)
+    public function update($id): RedirectResponse
     {
         $activity = Activity::find($id);
 
@@ -107,9 +107,9 @@ class ActivityController extends Controller
      * @param $id
      * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy($id): RedirectResponse
     {
-        Activity::destroy([request('id')]);
+        Activity::destroy([$id]);
         return back();
     }
 }
