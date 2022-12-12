@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 
 class LoginController extends Controller
 {
-    //
-    public function login()
+    /**
+     * Fait la validation du formulaire de login et vérifie si c'est un utilisateur ou un administrateur
+     * @return Application|RedirectResponse|Redirector
+     */
+    public function login(): Redirector|RedirectResponse|Application
     {
         \request()->validate([
             'login' => ['required'],
@@ -20,7 +25,11 @@ class LoginController extends Controller
         return $this->adminLogin();
     }
 
-    private function userLogin()
+    /**
+     * Gère la connexion des utilisateurs (User)
+     * @return Application|RedirectResponse|Redirector
+     */
+    private function userLogin(): Redirector|RedirectResponse|Application
     {
         define('GUARD', 'web');
 
@@ -40,7 +49,11 @@ class LoginController extends Controller
         ]);
     }
 
-    private function adminLogin()
+    /**
+     * Gère la connexion des administrateurs (Admin)
+     * @return Application|RedirectResponse|Redirector
+     */
+    private function adminLogin(): Redirector|RedirectResponse|Application
     {
         define('GUARD', 'webadmin');
 
