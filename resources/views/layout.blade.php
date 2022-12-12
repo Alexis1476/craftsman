@@ -29,7 +29,7 @@
                 <div class="hidden w-full md:block md:w-auto" id="navbar-default">
                     <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-base md:font-medium md:border-0 md:bg-white">
                         <li>@include('components.nav-item', ['route' => route('home'), 'text' => 'Accueil'])</li>
-                        <li>@include('components.nav-item', ['route' => route('categories'), 'text' => 'Catégories'])</li>
+                        <li>@include('components.nav-item', ['route' => route('categories.index'), 'text' => 'Catégories'])</li>
                         <li>@include('components.nav-item', ['route' => route('activities.index'), 'text' => 'Cartes'])</li>
                         @auth('webadmin')
                             @if(auth('webadmin')->user()->right === 1)
@@ -56,7 +56,7 @@
             <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded">
                 <ul class="space-y-2">
                     <li>@include('components.side-nav-item', ['route' => route('home'), 'text' => 'Accueil', 'icon' => asset('img/icons/home.svg')])</li>
-                    <li>@include('components.side-nav-item', ['route' => route('categories'), 'text' => 'Catégories', 'icon' => asset('img/icons/categories.svg')])</li>
+                    <li>@include('components.side-nav-item', ['route' => route('categories.index'), 'text' => 'Catégories', 'icon' => asset('img/icons/categories.svg')])</li>
                     <li>@include('components.side-nav-item', ['route' => route('activities.index'), 'text' => 'Cartes', 'icon' => asset('img/icons/activities.svg')])</li>
                     @auth('webadmin')
                         @if(auth('webadmin')->user()->right === 1)
