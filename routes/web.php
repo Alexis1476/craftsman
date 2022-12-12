@@ -34,7 +34,7 @@ Route::name('activities.')->group(function () {
             Route::delete('activities/{id}', 'destroy')->name('destroy');
             Route::put('activities{id}', 'update')->name('update');
         });
-        Route::get('activities/{id}', 'show')->name('show');
+        Route::get('activities/{id}', 'show')->name('show'); // !Important: Laisser cette route en dernier
     });
 });
 
@@ -42,8 +42,8 @@ Route::name('activities.')->group(function () {
 Route::name('categories.')->group(function () {
     Route::controller(CategoryController::class)->group(function () {
         Route::get('categories', 'index')->name('index');
-        Route::get('categories/{id}', 'show')->name('show');
         /*TODO : CRUD pour les categories */
+        Route::get('categories/{id}', 'show')->name('show');
     });
 });
 

@@ -19,7 +19,7 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        return View('activities.list', ['activities' => Activity::orderBy('name')->get()]);
+        return View('activities.index', ['activities' => Activity::orderBy('name')->get()]);
     }
 
     /**
@@ -30,7 +30,7 @@ class ActivityController extends Controller
     {
         $categories = Category::all();
 
-        return View('activities.new', ['categories' => $categories]);
+        return View('activities.create', ['categories' => $categories]);
     }
 
     /**
@@ -69,7 +69,7 @@ class ActivityController extends Controller
     {
         $categories = Category::all();
         $activity = Activity::find($id);
-        return View('activities.activity', ['activity' => $activity, 'categories' => $categories]);
+        return View('activities.show', ['activity' => $activity, 'categories' => $categories]);
     }
 
     /**
