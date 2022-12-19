@@ -4,7 +4,7 @@
     <div class="p-6">
         <h2 class="font-bold mb-2 text-2xl text-[#371877]">{{$category->name}}
         </h2>
-        <a href="{{route('category',['id'=>$category])}}"
+        <a href="{{route('categories.show',['id'=>$category])}}"
            class="text-[#371877] hover:text-purple-500 underline text-sm">Voir les activités</a>
     </div>
 </div>
