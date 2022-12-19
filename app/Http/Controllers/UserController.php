@@ -2,41 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Activity;
 use Hashids\Hashids;
 use App\Models\User;
-use http\Env\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\View\View;
+use function request;
 
 class UserController extends Controller
 {
+    /**
+     * GUARD de UserModel pour l'authentification
+     */
     const GUARD = 'web';
 
     /**
-     * Display a listing of the resource.
-     *
+     * Affiche la liste d'utilisateurs
+     * @return Application|Factory|View
      */
-    public function index()
+    public function index(): View|Factory|Application
     {
-        //
         $users = User::all();
         return View('admin.users', ['users' => $users]);
     }
 
-    public function logout()
-    {
-        auth()->logout();
-        return redirect(route('home'));
-    }
-
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\RedirectResponse
+     * Enregistre un utilisateur dans la base de données
+     * @return Application|RedirectResponse|Redirector
      */
-    public function create()
+    public function store(): Redirector|RedirectResponse|Application
     {
         $regexPhoneNumber = '/^([0][1-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])$|^(([0][0]|\+)[1-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])$/';
 
@@ -51,14 +48,14 @@ class UserController extends Controller
         ]);
 
         // Si le visiteur s'est déjà enregistré
-        if (User::where('email', \request('email'))->first()) {
+        if (User::where('email', request('email'))->first()) {
             return back()->withInput()->withErrors([
                 'email' => 'Un compte existe déjà avec cette adresse email'
             ]);
         }
 
         // Génération de l'ID unique
-        $hashids = new Hashids(\request('email'), 0, 'QWERTZUIOPASDFGHJKLYXCVBNM0123456789');
+        $hashids = new Hashids(request('email'), 0, 'QWERTZUIOPASDFGHJKLYXCVBNM0123456789');
         $id = $hashids->encode(1, 2);
 
         // Insertion dans la base de données
@@ -76,31 +73,18 @@ class UserController extends Controller
 
         // Connexion du visiteur
         auth()->guard(self::GUARD)->attempt([
-            'email' => \request('email'),
-            'password' => \request('password') // password -> convention laravel
+            'email' => request('email'),
+            'password' => request('password')
         ]);
 
         return redirect(route('user.profil'));
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param \App\Http\Requests\StoreUserRequest $request
-     * @return \Illuminate\Http\Response
+     * Affiche le profil de l'utilsiateur connecté
+     * @return Application|Factory|View
      */
-    public function store(StoreUserRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\User $user
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    public function show()
+    public function show(): View|Factory|Application
     {
         $user = auth(self::GUARD)->user();
         $activities = $user->activities()->where('finished', 0)->get();
@@ -109,39 +93,23 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
+     * Supprime l'utilisateur de la base de données
+     * @param $id
+     * @return RedirectResponse
      */
-    public function edit(User $user)
+    public function destroy($id): RedirectResponse
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \App\Http\Requests\UpdateUserRequest $request
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateVisitorRequest $request, User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
-        //
-        User::destroy([request('id')]);
+        User::destroy([$id]);
         return back();
+    }
+
+    /**
+     * Déconnecte l'utilisateur
+     * @return Application|RedirectResponse|Redirector
+     */
+    public function logout(): Redirector|RedirectResponse|Application
+    {
+        auth()->logout();
+        return redirect(route('home'));
     }
 }

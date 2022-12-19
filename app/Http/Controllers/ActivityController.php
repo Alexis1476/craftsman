@@ -3,42 +3,43 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activity;
-use App\Http\Requests\StoreActivityRequest;
-use App\Http\Requests\UpdateActivityRequest;
 use App\Models\Category;
-use Illuminate\View\View;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
+use function request;
 
 class ActivityController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * Affiche la liste des activités
+     * @return Application|Factory|View
      */
-    public function index()
+    public function index(): View|Factory|Application
     {
-        return View('activities.list', ['activities' => Activity::orderBy('name')->get()]);
+        return View('activities.index', ['activities' => Activity::orderBy('name')->get()]);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Affiche le formulaire pour ajouter une nouvelle activité
+     * @return Application|Factory|View
      */
-    public function create()
+    public function create(): View|Factory|Application
     {
-        // Get categories
         $categories = Category::all();
-        return View('activities.new', ['categories' => $categories]);
+
+        return View('activities.create', ['categories' => $categories]);
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
+     * Enregistre une nouvelle activité dans la base de données
+     * @return Application|RedirectResponse|Redirector
      */
-    public function store()
+    public function store(): Redirector|RedirectResponse|Application
     {
-        \request()->validate([
+        request()->validate([
             'category' => ['required'],
             'name' => ['required', 'max:50'],
             'description' => ['required'],
@@ -48,48 +49,39 @@ class ActivityController extends Controller
         ]);
 
         Activity::create([
-            'name' => \request('name'),
-            'description' => \request('description'),
-            'why' => \request('why'),
-            'laboratory' => \request('laboratory'),
-            'points' => \request('points'),
-            'category_id' => \request('category')
+            'name' => request('name'),
+            'description' => request('description'),
+            'why' => request('why'),
+            'laboratory' => request('laboratory'),
+            'points' => request('points'),
+            'category_id' => request('category')
         ]);
 
         return redirect(route('activities'));
     }
 
     /**
-     * Display the specified resource.
-     *
+     * Affiche une activité donnée
+     * @param $id
+     * @return Application|Factory|View
      */
-    public function show()
+    public function show($id): View|Factory|Application
     {
         $categories = Category::all();
-        $activity = Activity::find(request('id'));
-        return View('activities.activity', ['activity' => $activity, 'categories' => $categories]);
+        $activity = Activity::find($id);
+        return View('activities.show', ['activity' => $activity, 'categories' => $categories]);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\Activity $activity
-     * @return \Illuminate\Http\Response
+     * Met à jour une activité donnée dans la base de données
+     * @param $id
+     * @return RedirectResponse
      */
-    public function edit(Activity $activity)
+    public function update($id): RedirectResponse
     {
-        //
-    }
+        $activity = Activity::find($id);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     */
-    public function update()
-    {
-        $activity = Activity::find(request('id'));
-
-        \request()->validate([
+        request()->validate([
             'category' => ['required'],
             'name' => ['required', 'max:50'],
             'description' => ['required'],
@@ -111,15 +103,13 @@ class ActivityController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\Activity $activity
-     * @return \Illuminate\Http\Response
+     * Supprime une activité de la base de données
+     * @param $id
+     * @return RedirectResponse
      */
-    public function destroy(Activity $activity)
+    public function destroy($id): RedirectResponse
     {
-        //
-        Activity::destroy([request('id')]);
+        Activity::destroy([$id]);
         return back();
     }
 }

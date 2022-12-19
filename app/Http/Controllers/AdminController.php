@@ -2,31 +2,48 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Activity;
-use App\Models\Category;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\View\View;
+use function request;
 
 class AdminController extends Controller
 {
+    /**
+     * GUARD de AdminModel pour l'authentification
+     */
     const GUARD = 'webadmin';
 
-    function logout()
+    /**
+     * Déconnecte l'administrateur
+     * @return Application|RedirectResponse|Redirector
+     */
+    function logout(): Redirector|RedirectResponse|Application
     {
         auth(self::GUARD)->logout();
         return redirect(route('home'));
     }
 
-    public function profil()
+    /**
+     * Affiche le profil de l'administrateur
+     * @return Application|Factory|View
+     */
+    public function show(): View|Factory|Application
     {
-        return View('admin.profil');
+        return View('admin.show');
     }
 
-    public function searchUser()
+    /**
+     * Recherche un utilisateur par son AnonymousID
+     * @return Application|RedirectResponse|Redirector
+     */
+    public function searchUser(): Redirector|RedirectResponse|Application
     {
-        $user = User::where('anonymousID', \request('id'))->first();
+        $user = User::where('anonymousID', request('id'))->first();
 
         if (!$user) {
             return back()->withErrors([
@@ -36,34 +53,48 @@ class AdminController extends Controller
         return redirect(route('admin.showUser', ['id' => $user->anonymousID]));
     }
 
-    public function update()
+    /**
+     * Met à jour le mot de passe de l'admin
+     * @return Application|RedirectResponse|Redirector
+     */
+    public function update(): Redirector|RedirectResponse|Application
     {
-        \request()->validate([
+        request()->validate([
             'password' => ['required', 'confirmed', 'min:8'],
             'password_confirmation' => ['required']
         ]);
 
         auth()->guard(self::GUARD)->user()->update([
-            'password' => Hash::make(\request('password'))
+            'password' => Hash::make(request('password'))
         ]);
 
         return redirect(route('admin.profil'));
     }
 
-    public function validateActivity()
+    /**
+     * Marque comme "finie" une activité d'un utilisateur donné
+     * @param $userId
+     * @param $activityId
+     * @return RedirectResponse
+     */
+    public function validateActivity($userId, $activityId): RedirectResponse
     {
-        $user = User::where('anonymousID', \request('user'))->first();
-        $user->activities()->sync([request('activity') => ['finished' => 1]], false);
+        $user = User::where('anonymousID', $userId)->first();
+        $user->activities()->sync([$activityId => ['finished' => 1]], false);
         $user->newActivities();
 
         return back();
     }
 
-    function showUser()
+    /**
+     * Affiche le profil d'un utilisateur donné (AnonymousID)
+     * @param $id
+     * @return Application|Factory|View
+     */
+    function showUser($id): View|Factory|Application
     {
-        $user = User::where('anonymousID', \request('id'))->firstOrFail();
+        $user = User::where('anonymousID', $id)->firstOrFail();
         $userActivities = $user->activities()->where('finished', 0)->get();
-        $score = $user->score();
         return View('user.activities', ['user' => $user, 'activities' => $userActivities]);
     }
 }

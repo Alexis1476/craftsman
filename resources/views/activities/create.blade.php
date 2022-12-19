@@ -4,5 +4,5 @@
 
 @section('content')
     <h1 class="text-3xl font-bold mb-8">Ajouter une activité</h1>
-    @include('components.activity-form',['route' => route('admin.addActivity'), 'categories' => $categories])
+    @include('components.activity-form',['route' => route('activities.create'), 'categories' => $categories])
 @endsection

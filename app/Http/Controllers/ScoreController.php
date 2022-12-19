@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Score;
-use http\QueryString;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
-use Illuminate\View\View;
 
 class ScoreController extends Controller
 {
-    //
-    public function show()
+    /**
+     * Affiche les scores (les 10 premiers)
+     * @return Application|Factory|View
+     */
+    public function index(): View|Factory|Application
     {
         $scores = DB::table('users')->join('user_activities', 'users.id', '=', 'user_activities.user_id')
             ->join('activities', 'activities.id', '=', 'user_activities.activity_id')

@@ -2,7 +2,7 @@
     <div class="flex">
         <img class="w-10 h-10 mb-2 text-gray-500" src="{{asset("img/categories/$imgCategory")}}"
              alt="Category">
-        <a href="{{route('activity',['id' => $activity->id])}}">
+        <a href="{{route('activities.show',['id' => $activity->id])}}">
             <h5 class="ml-4 mb-2 text-2xl font-semibold tracking-tight text-[#371877]">{{$activity->name}}</h5>
         </a>
     </div>
