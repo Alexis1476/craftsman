@@ -89,7 +89,7 @@ Pour deployer le projet dans le serveur FTP :
     - DB_DATABASE
     - DB_USERNAME
     - DB_PASSWORD
-    - **IMPORTANT:** Mettre le APP_DEBUG = false
+    - **IMPORTANT :** Mettre le APP_DEBUG = false
 
 ## Migrations
 
