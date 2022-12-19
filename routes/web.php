@@ -83,11 +83,11 @@ Route::name('admin.')->group(function () {
 /* Generer les migrations lors du deploiement*/
 /*Route::get('migrate', function () {
     $exitCode = Artisan::call('migrate:fresh --seed --force');
-});*/
+})->name('migrate');*/
 
 /* Optimiser l'application*/
-/*Route::get('migrate', function () {
+/*Route::get('optimization', function () {
     $exitCode = Artisan::call('config:cache');
     $exitCode = Artisan::call('route:cache');
     $exitCode = Artisan::call('view:cache');
-});*/
+})->name('optimization');*/
