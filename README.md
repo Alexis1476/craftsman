@@ -73,7 +73,7 @@ PHP 8.0.25 et Composer
    php artisan serve
    ```
 
-# Deployement (FTP)
+# Déploiement (FTP)
 
 Pour deployer le projet dans le serveur FTP :
 
